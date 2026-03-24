@@ -1,0 +1,94 @@
+:root {
+  /* ── Colours: base palette ── */
+  --color-green-950: #0c110d;
+  --color-green-900: #131a14;
+  --color-green-800: #192019;
+  --color-green-700: #2d6a4f;
+  --color-green-500: #4a9e6a;
+  --color-green-300: #a8d5b8;
+  --color-green-100: #e8ede8;
+
+  --color-amber-500: #c8a96e;
+  --color-amber-300: #e2cc9f;
+  --color-amber-700: #a07840;
+
+  --color-offwhite: #f3f4ef;
+  --color-offwhite-dark: #eaede5;
+
+  /* ── Semantic colour tokens (light mode default) ── */
+  --bg-primary:    var(--color-offwhite);
+  --bg-secondary:  var(--color-offwhite-dark);
+  --bg-surface:    #ffffff;
+
+  --text-primary:  var(--color-green-950);
+  --text-secondary: var(--color-green-700);
+  --text-muted:    #4a6b4d;
+
+  --accent-primary: var(--color-green-700);
+  --accent-hover:   var(--color-green-500);
+  --accent-warm:    var(--color-amber-500);
+
+  --border-subtle:  rgba(0, 0, 0, 0.08);
+  --border-default: rgba(0, 0, 0, 0.14);
+
+  /* ── Typography ── */
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-mono:    'Courier New', Courier, monospace;
+
+  --text-xs:   0.75rem;   /* 12px */
+  --text-sm:   0.875rem;  /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg:   1.125rem;  /* 18px */
+  --text-xl:   1.25rem;   /* 20px */
+  --text-2xl:  1.5rem;    /* 24px */
+  --text-3xl:  2rem;      /* 32px */
+  --text-4xl:  2.5rem;    /* 40px */
+  --text-5xl:  3.5rem;    /* 56px */
+
+  --leading-tight:  1.15;
+  --leading-normal: 1.6;
+  --leading-loose:  1.8;
+
+  /* ── Spacing ── */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* ── Layout ── */
+  --max-width: 1100px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  /* ── Motion ── */
+  --transition-fast:   150ms ease;
+  --transition-base:   250ms ease;
+  --transition-slow:   400ms ease;
+  --transition-theme:  400ms ease;
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] {
+  --bg-primary:    var(--color-green-950);
+  --bg-secondary:  var(--color-green-900);
+  --bg-surface:    var(--color-green-800);
+
+  --text-primary:  var(--color-green-100);
+  --text-secondary: var(--color-green-300);
+  --text-muted:    #7a9b7d;
+
+  --accent-primary: var(--color-green-500);
+  --accent-hover:   var(--color-green-300);
+  --accent-warm:    var(--color-amber-500);
+
+  --border-subtle:  rgba(255, 255, 255, 0.06);
+  --border-default: rgba(255, 255, 255, 0.10);
+}
