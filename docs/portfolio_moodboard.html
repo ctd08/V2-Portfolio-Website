@@ -1,0 +1,167 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+
+  .mb-root { font-family: 'DM Sans', sans-serif; transition: background .4s, color .4s; }
+
+  .mb-root.dark {
+    --bg: #0c110d;
+    --bg2: #131a14;
+    --bg3: #192019;
+    --border: rgba(255,255,255,0.08);
+    --text: #e8ede8;
+    --muted: #7a9b7d;
+    --accent: #4a9e6a;
+    --accent2: #c8a96e;
+    --tag-bg: rgba(74,158,106,0.12);
+    --tag-text: #6ec98a;
+  }
+  .mb-root.light {
+    --bg: #f3f4ef;
+    --bg2: #ffffff;
+    --bg3: #eaede5;
+    --border: rgba(0,0,0,0.08);
+    --text: #1a2b1c;
+    --muted: #4a6b4d;
+    --accent: #2d6a4f;
+    --accent2: #a07840;
+    --tag-bg: rgba(45,106,79,0.08);
+    --tag-text: #2d6a4f;
+  }
+
+  .mb-root { background: var(--bg); color: var(--text); padding: 24px; }
+
+  .toggle-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+  .toggle-btn { background: var(--bg2); border: 1px solid var(--border); color: var(--muted); font-size: 12px; font-family: 'DM Sans', sans-serif; padding: 6px 14px; border-radius: 20px; cursor: pointer; transition: all .2s; letter-spacing: .04em; }
+  .toggle-btn:hover { color: var(--text); border-color: var(--accent); }
+
+  .label { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+
+  .palette-row { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+  .swatch { flex: 1; min-width: 60px; height: 56px; border-radius: 10px; position: relative; cursor: default; transition: transform .15s; }
+  .swatch:hover { transform: scale(1.04); }
+  .swatch-label { position: absolute; bottom: 6px; left: 8px; font-size: 10px; font-weight: 500; letter-spacing: .02em; }
+
+  .type-section { margin-bottom: 28px; background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 20px 22px; }
+  .display-text { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1.15; color: var(--text); margin: 0 0 4px; }
+  .display-italic { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 22px; color: var(--accent); margin: 0 0 12px; }
+  .body-text { font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.7; color: var(--muted); margin: 0; max-width: 460px; }
+  .mono-text { font-family: 'Courier New', monospace; font-size: 12px; color: var(--accent); background: var(--tag-bg); padding: 2px 8px; border-radius: 4px; display: inline-block; margin-top: 10px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .comp-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
+  .comp-card.accent-border { border-left: 3px solid var(--accent); border-radius: 0 14px 14px 0; }
+
+  .nav-preview { display: flex; align-items: center; justify-content: space-between; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 18px; margin-bottom: 8px; }
+  .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .nav-links { display: flex; gap: 20px; font-size: 12px; color: var(--muted); }
+  .nav-links span { cursor: pointer; transition: color .15s; }
+  .nav-links span:hover { color: var(--text); }
+  .nav-cta { background: var(--accent); color: #fff; font-size: 11px; padding: 6px 14px; border-radius: 20px; font-weight: 500; letter-spacing: .04em; }
+
+  .tag { display: inline-block; background: var(--tag-bg); color: var(--tag-text); font-size: 11px; padding: 4px 10px; border-radius: 20px; margin: 3px; font-weight: 500; letter-spacing: .02em; }
+  .tag.amber { background: rgba(160,120,64,0.12); color: var(--accent2); }
+
+  .hero-preview { background: var(--bg3); border: 1px solid var(--border); border-radius: 14px; padding: 28px 22px; margin-bottom: 12px; position: relative; overflow: hidden; }
+  .hero-grid-line { position: absolute; border: 1px solid var(--border); }
+  .hero-eyebrow { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .hero-title { font-family: 'DM Serif Display', serif; font-size: 32px; line-height: 1.2; margin: 0 0 10px; }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-sub { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 18px; max-width: 340px; }
+  .btn-primary { display: inline-block; background: var(--accent); color: #fff; font-size: 12px; font-family: 'DM Sans', sans-serif; padding: 9px 20px; border-radius: 24px; font-weight: 500; letter-spacing: .04em; cursor: pointer; transition: opacity .15s; }
+  .btn-primary:hover { opacity: .85; }
+  .btn-ghost { display: inline-block; border: 1px solid var(--border); color: var(--muted); font-size: 12px; font-family: 'DM Sans', sans-serif; padding: 9px 20px; border-radius: 24px; font-weight: 500; cursor: pointer; margin-left: 10px; transition: all .15s; }
+  .btn-ghost:hover { color: var(--text); border-color: var(--muted); }
+
+  .motion-note { font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 14px; margin-top: 4px; font-style: italic; }
+</style>
+
+<div class="mb-root dark" id="mb">
+  <div class="toggle-row">
+    <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Mood board — portfolio</span>
+    <button class="toggle-btn" onclick="toggleMode()">Toggle light / dark</button>
+  </div>
+
+  <div class="label">Colour palette</div>
+  <div class="palette-row">
+    <div class="swatch" style="background:#0c110d"><span class="swatch-label" style="color:#4a9e6a">#0c110d</span></div>
+    <div class="swatch" style="background:#192019"><span class="swatch-label" style="color:#4a9e6a">#192019</span></div>
+    <div class="swatch" style="background:#2d6a4f"><span class="swatch-label" style="color:#a8d5b8">#2d6a4f</span></div>
+    <div class="swatch" style="background:#4a9e6a"><span class="swatch-label" style="color:#0c110d">#4a9e6a</span></div>
+    <div class="swatch" style="background:#c8a96e"><span class="swatch-label" style="color:#1a1008">#c8a96e</span></div>
+    <div class="swatch" style="background:#e8ede8"><span class="swatch-label" style="color:#2d4a30">#e8ede8</span></div>
+  </div>
+
+  <div class="label">Typography</div>
+  <div class="type-section">
+    <div class="display-text">Built with intention.</div>
+    <div class="display-italic">developer · medtech · systems</div>
+    <p class="body-text">I build things that sit at the intersection of code, care, and clarity. From embedded systems to interfaces that clinicians actually use.</p>
+    <span class="mono-text">const me = { curious: true }</span>
+  </div>
+
+  <div class="label">Hero section preview</div>
+  <div class="hero-preview">
+    <div class="hero-grid-line" style="top:0;left:50%;width:1px;height:100%;"></div>
+    <div class="hero-grid-line" style="top:50%;left:0;width:100%;height:1px;"></div>
+    <div class="hero-eyebrow">Software · Medtech · Systems</div>
+    <div class="hero-title">Hello, I'm <em>your name.</em></div>
+    <div class="hero-sub">I design and build digital systems — from backend pipelines to interfaces built for humans under pressure.</div>
+    <span class="btn-primary">See my work</span>
+    <span class="btn-ghost">About me</span>
+  </div>
+
+  <div class="label">Navigation</div>
+  <div class="nav-preview">
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="nav-dot"></div>
+      <span style="font-family:'DM Serif Display',serif;font-size:15px;color:var(--text)">yourname</span>
+    </div>
+    <div class="nav-links">
+      <span>Work</span><span>About</span><span>Writing</span><span>Contact</span>
+    </div>
+    <div class="nav-cta">Hire me</div>
+  </div>
+
+  <div class="label" style="margin-top:16px">Components</div>
+  <div class="grid2">
+    <div class="comp-card accent-border">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:6px">Project card</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:17px;margin-bottom:6px">Patient monitor UI</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6">Real-time vitals dashboard for ICU environments.</div>
+      <div style="margin-top:10px">
+        <span class="tag">Vue 3</span><span class="tag">WebSocket</span><span class="tag amber">Medtech</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:6px">Skills / stack tag cloud</div>
+      <div>
+        <span class="tag">Python</span><span class="tag">Docker</span><span class="tag">Linux</span>
+        <span class="tag amber">Figma</span><span class="tag">Vue 3</span><span class="tag">CI/CD</span>
+        <span class="tag">Vite</span><span class="tag amber">Systems</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="motion-note">Motion direction: page transitions fade + slight upward drift · hover states are fast (150ms) · scroll reveals are staggered, not simultaneous · no parallax, no excessive movement</div>
+</div>
+
+<script>
+function toggleMode() {
+  const el = document.getElementById('mb');
+  const isDark = el.classList.contains('dark');
+  el.classList.toggle('dark', !isDark);
+  el.classList.toggle('light', isDark);
+  const swatches = el.querySelectorAll('.swatch');
+  const lightColors = ['#f3f4ef','#eaede5','#2d6a4f','#4a9e6a','#a07840','#1a2b1c'];
+  const darkColors  = ['#0c110d','#192019','#2d6a4f','#4a9e6a','#c8a96e','#e8ede8'];
+  const textLight   = ['#2d6a4f','#2d6a4f','#a8d5b8','#1a2b1c','#1a1008','#2d4a30'];
+  const textDark    = ['#4a9e6a','#4a9e6a','#a8d5b8','#0c110d','#1a1008','#2d4a30'];
+  const colors = isDark ? lightColors : darkColors;
+  const texts  = isDark ? textLight   : textDark;
+  swatches.forEach((s,i) => {
+    s.style.background = colors[i];
+    s.querySelector('.swatch-label').style.color = texts[i];
+  });
+}
+</script>
