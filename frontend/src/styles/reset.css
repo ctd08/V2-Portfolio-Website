@@ -1,0 +1,57 @@
+*, *::before, *::after {    /* Universal selector to reset all elements and their pseudo-elements */
+  box-sizing: border-box;
+  margin: 0; /* Remove default margin and padding */
+  padding: 0;
+}
+
+html { 
+  font-size: 16px; /* Set base font size for easier rem calculations */ /* 1rem = 16px */
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%; /* Prevent font scaling on mobile devices */
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  transition: background-color var(--transition-theme), color var(--transition-theme);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased; /* Improve font rendering on WebKit browsers */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, video, svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit; /*stops links from inheriting the default blue color and underlining */
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font: inherit;
+}
+
+ul, ol { /* Remove default list styles */
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400; /*remove default boldness from headings */
+  line-height: var(--leading-tight);
+}
+
+input, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word; /* Ensure long words break and don't overflow their containers */
+}
