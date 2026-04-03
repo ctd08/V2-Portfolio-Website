@@ -206,13 +206,89 @@ SSH keys authenticate silently from this point — no password prompts, always t
 **SSH keys** — a pair of cryptographic keys (public + private). You give GitHub the public key; your machine keeps the private key. Git uses them to authenticate silently without a password.
 
 ---
+**April 3rd - 4th** 
+
+## Phase 5 — First component: AppNav
+
+### Files created / modified
+
+- `frontend/src/components/layout/AppNav.vue` — main navigation component
+- `frontend/src/composables/useTheme.js` — light/dark mode toggle logic
+- `frontend/src/App.vue` — wired AppNav and RouterView
+- `frontend/vite.config.js` — added `@` path alias
+- `frontend/src/router/index.js` — fixed broken route, added HomeView
+- `frontend/src/views/HomeView.vue` — placeholder view to test nav
+
+### What was built
+
+**Top bar** — fixed, full width, always visible:
+- CT button (top-left) — italic serif initials, toggles the sidebar, turns green when active
+- Full name centered absolutely so it stays truly centered regardless of surrounding elements
+- Right side: time capsule icon, light/dark toggle, Contact link
+
+**Sidebar** — slides in from the left on CT click:
+- Floats over content as an overlay, doesn't push the layout
+- Links in order: About, Career, Projects, Blog, CV
+- Footer: social icons (LinkedIn, GitHub, Email) above a divider, version string below
+- 260px wide on desktop, full width on mobile
+
+**Theme toggle** — sun/moon icon, switches between light and dark mode
+
+### Problems encountered and fixed
+
+**`@` alias not configured**
+Vite doesn't set up the `@` path alias by default. Added `resolve.alias` to `vite.config.js` pointing `@` to `src/`.
+
+**Router had undefined `component`**
+The router file had `{ path: '/', component }` with no import — left over from scaffold. Fixed by importing `HomeView` and referencing it properly.
+
+**`HomeView.vue` was empty**
+Vue can't render an empty file. Added a minimal placeholder template to unblock testing.
+
+**Name not centering in flexbox**
+Setting `text-align: center` doesn't work when siblings have unequal widths — the CT button on the left and actions on the right push the name off-center. Fixed with `position: absolute; left: 50%; transform: translateX(-50%)` to take it out of the flex flow entirely and center it relative to the topbar.
+
+**Options API vs Composition API**
+Original `App.vue` used the older Options API (`export default { name: 'App' }`). Replaced with Composition API (`<script setup>`) to stay consistent with Vue 3 best practices throughout the project.
+
+### Concepts learned
+
+**`<script setup>`**
+Vue 3's Composition API syntax. Cleaner than Options API — no need to return anything, imports are automatically available in the template. This is the modern standard for Vue 3.
+
+**`scoped` styles**
+Adding `scoped` to a `<style>` tag means those CSS rules only apply to that component. Vue adds a unique attribute to every element to achieve this, preventing style leakage between components.
+
+**`<Transition>`**
+Vue's built-in animation wrapper. When a `v-if` toggles, Vue applies CSS classes like `.slide-enter-from` and `.slide-leave-to` automatically. Clean animations with no JavaScript needed.
+
+**`router-link-active`**
+A class Vue Router automatically adds to any `<RouterLink>` whose path matches the current route. Used to highlight the active nav link with no extra logic.
+
+**`position: absolute` centering trick**
+`left: 50%` moves an element so its left edge is at the parent's center. `transform: translateX(-50%)` shifts it back by half its own width, achieving true centering regardless of the element's width.
+
+**`inset: 0`**
+CSS shorthand for `top: 0; right: 0; bottom: 0; left: 0`. Used on the backdrop to cover the full screen.
+
+**`watchEffect`**
+A Vue 3 composable utility that runs a function immediately and re-runs it whenever any reactive value it reads changes. Used in `useTheme.js` to keep `data-theme` on `<html>` in sync with the toggle state.
+
+### Commits
+- `feat: add AppNav with sidebar, theme toggle and social links`
+
+
+
 
 ## Next steps
 
-- [ ] Write `tokens.css` — CSS variables for the full design system
-- [ ] Write `reset.css` and `typography.css`
-- [ ] Build `AppNav.vue` and `HeroSection.vue`
+- [ ] Build `HeroSection.vue`, `AppFooter.vue`, `HomeView.vue`
+- [ ] Build `ProjectsSection.vue` + populate `projects.js` with real data
+- [ ] Build `AboutSection.vue`
+- [ ] Build individual views: `AboutView.vue`, `CareerView.vue`, `ProjectView.vue`, `BlogView.vue`, `CVView.vue`
+- [ ] Wire time capsule icon to v1 URL
 - [ ] Set up Vercel auto-deploy from GitHub
 - [ ] Write `Dockerfile`
-- [ ] Set up Hetzner VPS
+- [ ] Set up Hetzner VPS — Ubuntu, Docker, Caddy
 - [ ] Write `deploy.yml` GitHub Actions workflow
+- [ ] Update DNS to point domain to VPS
