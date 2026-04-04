@@ -277,12 +277,58 @@ A Vue 3 composable utility that runs a function immediately and re-runs it whene
 ### Commits
 - `feat: add AppNav with sidebar, theme toggle and social links`
 
+**4th March**
+## Phase 6 — Layout components and scroll UX
 
+### Files created / modified
+
+- `frontend/src/components/layout/AppFooter.vue` — footer with copyright and social links
+- `frontend/src/components/ui/ScrollProgress.vue` — reading progress bar below topbar
+- `frontend/src/components/ui/ScrollToTop.vue` — scroll to top button, appears after 40% scroll
+- `frontend/src/App.vue` — added AppFooter, ScrollProgress, ScrollToTop
+- `frontend/src/components/layout/AppNav.vue` — name now links to home, hamburger icon added to CT button, icon colour fixed for dark mode
+
+### What was built
+
+**AppFooter** — minimal footer with copyright on the left and social icons (LinkedIn, GitHub, Email) on the right. Consistent icon hover behaviour with the rest of the UI.
+
+**ScrollProgress** — a 2px fixed bar sitting just below the topbar. Fills left to right as the user scrolls. Uses `--accent-primary` which is visible in both light and dark mode. Updates on every scroll event, transitions at 0.1s linear so it feels instant rather than laggy.
+
+**ScrollToTop** — fixed to the bottom-right corner. Hidden until the user has scrolled past 40% of the page, then fades up into view. Clicking it smoothly scrolls back to the top. Fades out when scrolling back near the top.
+
+**Nav name → home link** — wrapped `topbar-name` in a `<RouterLink to="/">` so clicking the name always returns to home.
+
+**Hamburger icon in CT button** — added a small hamburger SVG to the left of the CT initials. Button changed from fixed square to auto width with padding to accommodate both. Icon uses `color: var(--text-primary)` so it inherits the correct colour in both light and dark mode via `stroke="currentColor"`.
+
+### Problems encountered and fixed
+
+**Hamburger icon invisible in dark mode**
+The SVG used `stroke="currentColor"` but the button had no explicit `color` set, so it fell back to black in both modes. Fixed by adding `color: var(--text-primary)` to `.ct-btn` and adding `color` to its transition so it switches smoothly with the theme.
+
+### Concepts learned
+
+**`onMounted` / `onUnmounted`**
+Vue lifecycle hooks. `onMounted` runs when the component is added to the DOM — used to register event listeners. `onUnmounted` runs when the component is removed — used to clean them up. Always remove event listeners on unmount to prevent memory leaks.
+
+**Memory leaks from event listeners**
+Every `addEventListener` keeps a reference to its callback alive. If the component is destroyed but the listener isn't removed, it keeps firing on every scroll event indefinitely. `onUnmounted(() => window.removeEventListener(...))` prevents this.
+
+**`scrollHeight - innerHeight`**
+The total scrollable distance of a page. `document.documentElement.scrollHeight` is the full document height including content outside the viewport. Subtracting `window.innerHeight` (the visible area) gives the actual scrollable range. Dividing `window.scrollY` by this gives a 0–1 progress ratio.
+
+**Linear vs eased transitions on progress indicators**
+Easing (ease-in, ease-out) on a progress bar makes it feel laggy and inaccurate — it visually lags behind the actual scroll position. `linear` keeps it in sync with the user's finger or scroll wheel.
+
+### Commits
+- `feat: added AppFooter`
+- `feat: added ScrollToTop and ScrollProgress elem ents`
+- `fix: hamburger icon colour in dark mode`
+- `made topbar-name as a link to homeview`
 
 
 ## Next steps
 
-- [ ] Build `HeroSection.vue`, `AppFooter.vue`, `HomeView.vue`
+- [ ] Build `HeroSection.vue`, `HomeView.vue`
 - [ ] Build `ProjectsSection.vue` + populate `projects.js` with real data
 - [ ] Build `AboutSection.vue`
 - [ ] Build individual views: `AboutView.vue`, `CareerView.vue`, `ProjectView.vue`, `BlogView.vue`, `CVView.vue`
