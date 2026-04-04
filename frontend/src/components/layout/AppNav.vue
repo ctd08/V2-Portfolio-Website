@@ -11,7 +11,7 @@
       <span class="ct-text">CT</span>
     </button>
 
-    <span class="topbar-name">Cristina Tutunariu</span>
+    <RouterLink to="/" class="topbar-name">Cristina Tutunariu</RouterLink>
 
     <nav class="topbar-actions">
       <button class="icon-btn" @click="toggleTimeCapsule" title="Time capsule">
