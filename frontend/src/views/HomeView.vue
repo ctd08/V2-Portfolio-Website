@@ -1,5 +1,9 @@
 <template>
   <div class="home">
-    <p>Home</p>
+    <HeroSection />
   </div>
 </template>
+
+<script setup>
+import HeroSection from '@/components/sections/HeroSection.vue'
+</script>

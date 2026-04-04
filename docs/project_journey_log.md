@@ -325,6 +325,54 @@ Easing (ease-in, ease-out) on a progress bar makes it feel laggy and inaccurate 
 - `fix: hamburger icon colour in dark mode`
 - `made topbar-name as a link to homeview`
 
+**4th March**
+## Phase 7 — Hero section
+
+### Files created / modified
+
+- `frontend/src/components/sections/HeroSection.vue` — split slider hero section
+- `frontend/src/views/HomeView.vue` — wired HeroSection in
+
+### What was built
+
+**HeroSection — split slider**
+A draggable divider splits the hero into two sides. Left is the creative/personal side, right is the logical/professional side. As the user drags the handle, `clip-path: inset()` clips each panel simultaneously creating the reveal effect. The text content below — eyebrow, headline subtitle, and CTA buttons — transitions reactively based on which side is dominant (past 50%).
+
+### Page architecture decision — `/about` vs `/career`
+Originally both hero sides pointed toward an "About" page which would have caused a conflict — same URL, different expected content. Resolved by keeping them as two distinct routes already in the sidebar:
+- `/about` → personal: personality, AuDHD, music, books, neuropsychology, philosophy
+- `/career` → professional: medtech journey, tech stack, projects, papers, courses (future)
+
+No conditional redirections needed — each button already goes somewhere distinct.
+
+### Concepts learned
+
+**`clip-path: inset()`**
+Clips an element to show only a rectangular portion of itself. `inset(0 X% 0 0)` clips from the right, `inset(0 0 0 X%)` clips from the left. Updating both simultaneously as the slider moves creates the split reveal effect.
+
+**`computed()`**
+A Vue 3 reactive value that automatically recalculates whenever its dependencies change. `activeMode` recalculates every time `sliderPos` changes — no manual updates needed anywhere.
+
+**`mode="out-in"` on `<Transition>`**
+Makes the old content fade out completely before the new content fades in. Without this both states would be briefly visible at the same time.
+
+**Touch events vs mouse events**
+Mouse events use `e.clientX`. Touch events use `e.touches[0].clientX`. Both need handling separately for the slider to work on mobile.
+
+**`Math.min(Math.max(value, 5), 95)`**
+Clamps a value between two bounds — prevents the handle disappearing off either edge.
+
+### Planned page content
+
+| Route | Content |
+|---|---|
+| `/about` | Personality, AuDHD, music, books, neuropsychology, philosophy |
+| `/career` | Medtech journey, tech stack, projects, papers, courses (future) |
+| `/blog` | Writing, thoughts, ideas |
+| `/cv` | Downloadable CV |
+
+### Commits
+- `feat: add HeroSection with split slider`
 
 ## Next steps
 
