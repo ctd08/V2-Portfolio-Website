@@ -3,6 +3,11 @@
   <!-- Top bar -->
   <header class="topbar">
     <button class="ct-btn" @click="toggleSidebar" :class="{ active: sidebarOpen }">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
       <span class="ct-text">CT</span>
     </button>
 
@@ -140,8 +145,10 @@ function toggleTimeCapsule() {
 
 /* ── CT button ── */
 .ct-btn {
-  width: 36px;
+  width: auto;
   height: 36px;
+  padding: 0 var(--space-3);
+  gap: var(--space-2);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -150,6 +157,7 @@ function toggleTimeCapsule() {
   border: 1px solid var(--border-default);
   transition: background var(--transition-fast), border-color var(--transition-fast);
   flex-shrink: 0;
+  color : var(--text-primary);
 }
 
 .ct-btn:hover {
