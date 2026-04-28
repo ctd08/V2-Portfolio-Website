@@ -39,7 +39,7 @@
         {{ activeMode === 'right' ? 'Software & Hardware · Medtech · Systems' : 'Reflective · Observant · Curious' }}
       </p>
       <h1 class="hero-title">
-        Hi, I'm <em>Cristina</em> 
+        Servus, I'm <em>Cristina</em> 
         <Transition name="swap" mode="out-in">
           <span :key="activeMode" class="hero-subtitle">
             {{ activeMode === 'right' ? 'I design systems with purpose.' : 'I also love to create and learn new things.' }}
