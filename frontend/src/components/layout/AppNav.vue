@@ -91,7 +91,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from '@/composables/useTheme'
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/vue"
 
 const { isDark, toggleTheme } = useTheme()
 const sidebarOpen = ref(false)
