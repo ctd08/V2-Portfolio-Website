@@ -105,7 +105,8 @@ function closeSidebar() {
 }
 
 function toggleTimeCapsule() {
-  console.log('time capsule clicked')
+  //console.log('time capsule clicked')
+  window.location.href = 'https://cristina-diana-tutunariu.netlify.app/'
 }
 </script>
 
