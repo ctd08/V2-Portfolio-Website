@@ -13,7 +13,7 @@ function updateProgress() {
   progress.value = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
 }
 
-onMounted(() => window.addEventListener('scroll', updateProgress))
+onMounted(() => window.addEventListener('scroll', updateProgress)) 
 onUnmounted(() => window.removeEventListener('scroll', updateProgress))
 </script>
 
