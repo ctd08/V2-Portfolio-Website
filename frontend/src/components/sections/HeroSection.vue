@@ -36,13 +36,13 @@
     <!-- Hero text — changes based on slider position -->
     <div class="hero-content">
       <p class="hero-eyebrow text-eyebrow">
-        {{ activeMode === 'right' ? 'Software · Medtech · Systems' : 'Creative · Human · Curious' }}
+        {{ activeMode === 'right' ? 'Software & Hardware · Medtech · Systems' : 'Reflective · Observant · Curious' }}
       </p>
       <h1 class="hero-title">
-        Hi, I'm <em>Cristina</em> —
+        Hi, I'm <em>Cristina</em> 
         <Transition name="swap" mode="out-in">
           <span :key="activeMode" class="hero-subtitle">
-            {{ activeMode === 'right' ? 'I build systems that work.' : 'I\'m also a person though.' }}
+            {{ activeMode === 'right' ? 'I design systems with purpose.' : 'I also love to create and learn new things.' }}
           </span>
         </Transition>
       </h1>
