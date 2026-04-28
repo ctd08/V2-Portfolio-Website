@@ -374,15 +374,107 @@ Clamps a value between two bounds — prevents the handle disappearing off eithe
 ### Commits
 - `feat: add HeroSection with split slider`
 
+## Phase 8 — Time capsule, planning and ideas session
+
+### Files modified
+- `frontend/src/components/layout/AppNav.vue` — time capsule now navigates to V1
+
+### What was done
+
+**Time capsule wired to V1**
+Replaced the `console.log` placeholder in `toggleTimeCapsule()` with `window.location.href` pointing to the V1 Netlify site. Navigates in the same tab intentionally — the user uses the browser back button to return, which fits the time travel metaphor.
+
+**BTTF transition animation — saved for later**
+Explored the idea of a full Back to the Future themed transition when clicking the time capsule. Vision: 3D DeLorean model with opening door, interior dashboard view with accurate time circuit display, driving sequence with sparks, warp effect landing on V1, and a sci-fi floating notification on arrival with a return button.
+
+Decided on a phased approach:
+- Phase A (later): BTTF time circuit screen + CSS sparks + sci-fi floating notification
+- Phase B (even later): Full 3D car model and driving sequence in Three.js
+
+Parked until the portfolio is otherwise complete.
+
+**GitHub Actions workflow**
+Added `deploy.yml` with a build check job — installs dependencies with `npm ci`, runs `npm run build` inside `frontend/`. Stops failed workflow notifications from GitHub. Full VPS deploy step to be added once Hetzner is set up.
+
+### Ideas and architecture decisions
+
+**Home page scroll narrative decided**
+Hero → Skills/logos → Companies worked with → Recent projects → Contact CTA button
+
+**CV view architecture**
+- Abstract CV rendered on the page, not a static PDF equivalent
+- Positions deep-link to blog posts or project pages for context
+- Download button for recruiters
+- Personal info intentionally omitted — available on request via contact form
+
+**Contact form categories**
+- Getting in touch
+- Requesting personal info
+- Requesting services
+- Feedback / critique
+- Report an issue
+
+**Post-server roadmap**
+- Personal analytics dashboard — own the data, no Google Analytics
+- Contact form messages routed to dashboard
+- Automated confirmation emails via Resend or Nodemailer
+- Personalised notifications for new content
+
+**Now page added to plan**
+A `/now` page in the Derek Sivers tradition — answers "what am I focused on right now?" Updated periodically. Fits the personality of the site and sits naturally next to Blog in the sidebar.
+
+**V1 review — what to carry into V2**
+- The opening "black box" paragraph — strong personal voice, rework as hero subtitle
+- "Servus" as greeting — already implemented, distinctly personal
+- KORA internship story — medtech roots, core content for `/career`
+- Bilingual CV detail — shows European context
+
+### Concepts learned
+
+**`window.location.href`**
+Navigates the current tab to a new URL. Unlike `window.open('url', '_blank')` which opens a new tab, `href` replaces the current page — correct for the time travel metaphor where the user travels away from V2.
+
+**`npm ci` vs `npm install`**
+`ci` installs exactly what is in `package-lock.json` without updating anything. Makes builds reproducible and faster in CI environments. Always use `npm ci` in GitHub Actions, never `npm install`.
+
+**Now page convention**
+A `/now` page answers "what are you focused on right now?" — a concept popularised by Derek Sivers. Common in the developer and indie maker community. Updated every few months, signals an active and thoughtful person behind the site.
+
+### Commits
+- `fix: wire time capsule to V1 website`
+- `ci: add build check workflow`
+- `docs: update journey log with phase 8`
+
 ## Next steps
 
-- [ ] Build `HeroSection.vue`, `HomeView.vue`
+### Frontend — home view
 - [ ] Build `ProjectsSection.vue` + populate `projects.js` with real data
-- [ ] Build `AboutSection.vue`
-- [ ] Build individual views: `AboutView.vue`, `CareerView.vue`, `ProjectView.vue`, `BlogView.vue`, `CVView.vue`
-- [ ] Wire time capsule icon to v1 URL
-- [ ] Set up Vercel auto-deploy from GitHub
+- [ ] Build skills/logos section (staggered fade-in on scroll, SVG icons, light/dark mode)
+- [ ] Build companies section (logo + name + year range)
+- [ ] Build contact CTA section at bottom of home
+- [ ] Wire all sections into `HomeView.vue`
+
+### Frontend — individual views
+- [ ] `AboutView.vue` — personality, AuDHD, music, books, neuropsychology, philosophy
+- [ ] `CareerView.vue` — medtech journey, tech stack, projects, papers, courses (future)
+- [ ] `ProjectView.vue` — individual project pages
+- [ ] `BlogView.vue` — writing and thoughts
+- [ ] `CVView.vue` — abstract CV on page, download button, no personal info
+- [ ] `ContactView.vue` — form with categories: Getting in touch, Requesting personal info, Requesting services, Feedback / critique, Report an issue
+- [ ] `NowView.vue` — what I am focused on right now, updated periodically
+
+### Frontend — navigation
+- [ ] Add Now page to sidebar
+- [ ] Wire time capsule to BTTF transition animation (Phase A: time circuit + sci-fi notification, Phase B: full 3D car sequence — saved for later)
+
+### Infrastructure
 - [ ] Write `Dockerfile`
 - [ ] Set up Hetzner VPS — Ubuntu, Docker, Caddy
-- [ ] Write `deploy.yml` GitHub Actions workflow
+- [ ] Write `deploy.yml` GitHub Actions workflow — full deploy to VPS
 - [ ] Update DNS to point domain to VPS
+
+### Post-server
+- [ ] Build personal analytics dashboard (own data, no Google Analytics)
+- [ ] Wire contact form messages to dashboard
+- [ ] Set up automated emails on form submission (Resend or Nodemailer)
+- [ ] Personalised notifications for new content
