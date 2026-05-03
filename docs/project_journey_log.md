@@ -445,6 +445,64 @@ A `/now` page answers "what are you focused on right now?" — a concept popular
 - `ci: add build check workflow`
 - `docs: update journey log with phase 8`
 
+
+## Phase 9 — Skills section planning and icon research
+
+### Decisions made
+
+**Build order corrected**
+Skills section depends on projects being tagged first. Revised order:
+1. `projects.js` + `ProjectsSection.vue` with tags
+2. Skills section with click-to-filter wired to projects
+3. Companies section
+
+**Skills section structure — four categories**
+
+| Section | Animation | Behaviour |
+|---|---|---|
+| Languages I've worked in | Grid fade-in (option 1) | Clicks filter /projects |
+| Frameworks I've worked in | Marquee (option 2) | Clicks filter /projects |
+| Dev tools I've worked with | Staggered rows (option 3) | Display only |
+| Collaboration tools I've worked with | Staggered rows (option 3) | Display only |
+
+**"Currently learning" chips** added inside Frameworks section with dashed border style — Docker, Three.js.
+
+**Framing decision**
+All sections use "I've worked in / with" rather than claiming proficiency. Honest and credible.
+
+**Icon library decided — Simple Icons**
+`npm install simple-icons` — individual SVGs per brand, consistent style, correct brand colours, tree-shakeable.
+
+**Icon availability confirmed**
+
+Available: Python, JavaScript, C, C++, Vue, FastAPI, Docker, Git, GitHub, Linux, Debian, CMake, Jira, Confluence, Notion, MATLAB, LTSpice, VSCode
+
+Text-only (no icon exists): VHDL, SEGGER, Scribe, Snagit
+
+**Full skills inventory decided**
+
+- Languages: Python, JavaScript, C, C++, VHDL
+- Frameworks: Vue, FastAPI, Docker (learning), Three.js (learning)
+- Dev tools: Git, GitHub, Linux, SEGGER, LTSpice, MATLAB, VSCode
+- Collaboration tools: Jira, Confluence, Notion, Scribe, Snagit, MS Office
+
+**npm and VSCode dropped from showcase reasoning**
+npm is a default tool, not a skill signal. VSCode is an editor everyone uses. Neither adds meaningful information to a recruiter.
+
+### Concepts learned
+
+**Simple Icons**
+An npm package with 3400+ SVG icons for popular brands. Each icon exported individually so bundlers can tree-shake unused ones. Provides the SVG path and official brand hex colour. Consistent style across all icons — critical for a skills section where mixed icon styles would look incomplete.
+
+**Tree shaking**
+A bundler optimisation that removes unused code from the final build. By importing only `{ siPython, siJavascript }` instead of the entire icon library, only those two icons end up in the bundle. Keeps the build size small.
+
+**Icon availability strategy**
+Not every tool has a brand icon. For niche tools (VHDL, SEGGER, Scribe, Snagit) — text-only chips are cleaner than using generic placeholder icons. Avoids misleading the visitor with an unrecognisable logo.
+
+### Commits
+- `docs: update journey log with phase 9`
+
 ## Next steps
 
 ### Frontend — home view
