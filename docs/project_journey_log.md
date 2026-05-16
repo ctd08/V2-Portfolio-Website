@@ -503,6 +503,62 @@ Not every tool has a brand icon. For niche tools (VHDL, SEGGER, Scribe, Snagit) 
 ### Commits
 - `docs: update journey log with phase 9`
 
+
+## Phase 10 — Home page layout brainstorm and mockup
+
+### Files created
+- `docs/homepage_layout_mockup.html` — fully interactive home page layout mockup with working slider, theme toggle, sidebar, scroll progress, and fade-in animations
+
+### Decisions made
+
+**Full home page scroll narrative finalised**
+| Order | Section | Notes |
+|---|---|---|
+| 1 | Hero zone | Split slider + greeting + buttons |
+| 2 | Currently | Role + building + learning |
+| 3 | Skills | Four categories, fade in on scroll |
+| 4 | Projects | Minimal cards, moved before companies |
+| 5 | Companies | Logo + name + year, clicks filter /career |
+| 6 | Contact CTA | Button → /contact |
+
+**Hero slider behaviour finalised**
+- Start at 50/50: both sides show one continuous photo of Cristina standing back to back with herself in two different outfits, divider cuts through the middle
+- Drag left past ~30%: left (professional) side becomes dominant → swaps to solo professional portrait (blazer, serious)
+- Drag right past ~70%: right (personal) side becomes dominant → swaps to solo creative portrait (colourful, relaxed)
+- Text, eyebrow and buttons react to whichever side is past 50%
+- Implementation deferred until real photos are available — colour placeholders used in mockup
+
+**Skills section simplified**
+- No icons — tags only. Cleaner, faster to build, easier to maintain
+- All four categories fade in on scroll
+- Marquee only kicks in if a row genuinely overflows — not forced
+
+**Comment section — deferred to post-server**
+- Will live on blog posts and project pages only
+- Needs moderation backend before going live
+- Added to post-server issues list
+
+**Companies section**
+- Logo + name + year range
+- Clicking navigates to /career filtered by that company
+- Moved after projects in the scroll order
+
+### Concepts learned
+
+**`IntersectionObserver`**
+A browser API that watches elements and fires a callback when they enter or leave the viewport. Used for the fade-in on scroll effect — much more performant than listening to the scroll event directly, since it doesn't fire on every pixel scrolled.
+
+**`clip-path: inset()` for split reveal**
+Both panels are absolutely positioned and cover the full stage. The left panel clips from the right, the right panel clips from the left. As the slider moves, both clip paths update simultaneously — giving the illusion of a single image being split and revealed.
+
+**Image swap threshold logic**
+The swap triggers on the dominant side — whichever side is getting bigger. `sliderPos < 30` means the left side occupies more than 70% of the stage and is dominant. `sliderPos > 70` means the right side is dominant. The starting back-to-back image is a single continuous photo designed to be split down the middle by the divider.
+
+### Commits
+- `docs: add home page layout mockup`
+- `docs: update journey log with phase 10`
+
+
 ## Next steps
 
 ### Frontend — home view
