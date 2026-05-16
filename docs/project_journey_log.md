@@ -558,6 +558,35 @@ The swap triggers on the dominant side — whichever side is getting bigger. `sl
 - `docs: add home page layout mockup`
 - `docs: update journey log with phase 10`
 
+## Phase 11 — CurrentlySection component
+
+### Files created / modified
+- `frontend/src/components/sections/CurrentlySection.vue` — currently strip component
+- `frontend/src/data/currently.js` — content data file
+- `frontend/src/views/HomeView.vue` — wired CurrentlySection in
+
+### What was built
+
+**CurrentlySection**
+Three item strip showing role, what I'm building, and what I'm learning. Each item has a coloured dot (green = active, amber = in progress), a label, and a value. Content lives in `currently.js` so it can be updated without touching the component.
+
+Current content:
+- Role: MedTech student · HiWi @ Institut für Digitale Medizin, UKA
+- Building: A portfolio worth keeping
+- Learning: Linux · Docker · CI/CD
+
+**Data separation pattern**
+Content that changes over time lives in `src/data/` as a plain JS export. The component just imports and renders it. This pattern will be used for projects, companies, and any other content-driven sections.
+
+### Lessons learned
+
+**`closes #N` in commit messages**
+Adding `closes #N`, `fixes #N` or `resolves #N` to a commit message automatically closes the linked GitHub issue when pushed to main. The number must match the exact GitHub issue number — double check before pushing.
+
+### Commits
+- `feat: add CurrentlySection with data file, closes #25`
+- `docs: update journey log with phase 11`
+
 
 ## Next steps
 
@@ -578,7 +607,6 @@ The swap triggers on the dominant side — whichever side is getting bigger. `sl
 - [ ] `NowView.vue` — what I am focused on right now, updated periodically
 
 ### Frontend — navigation
-- [ ] Add Now page to sidebar
 - [ ] Wire time capsule to BTTF transition animation (Phase A: time circuit + sci-fi notification, Phase B: full 3D car sequence — saved for later)
 
 ### Infrastructure
