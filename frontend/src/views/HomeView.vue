@@ -10,6 +10,7 @@
 <script setup>
 import HeroSection from '@/components/sections/HeroSection.vue'
 import CurrentlySection from '@/components/sections/CurrentlySection.vue'
+import SkillsSection from '@/components/sections/SkillsSection.vue'
 </script>
 
 <style scoped>
