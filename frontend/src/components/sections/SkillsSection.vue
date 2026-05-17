@@ -22,11 +22,6 @@
             @click="cat.filterable ? filterProjects(item.name) : null"
             :title="cat.filterable ? `Filter projects by ${item.name}` : item.name"
           >
-            <span
-              v-if="item.slug"
-              class="chip-icon"
-              v-html="getIcon(item.slug, item.color)"
-            ></span>
             {{ item.name }}
             <span v-if="item.learning" class="learning-badge">learning</span>
           </button>
@@ -40,18 +35,18 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { skills } from '@/data/skills.js'
-import * as simpleIcons from 'simple-icons'
+/*import * as simpleIcons from 'simple-icons'*/
 
 const router = useRouter()
 const fadeEls = ref([])
 let observer = null
 
-function getIcon(slug, color) {
+/*function getIcon(slug, color) {
   const key = 'si' + slug.charAt(0).toUpperCase() + slug.slice(1).replace(/\./g, '')
   const icon = simpleIcons[key]
   if (!icon) return ''
   return `<svg role="img" viewBox="0 0 24 24" width="14" height="14" fill="${color || '#' + icon.hex}" xmlns="http://www.w3.org/2000/svg"><path d="${icon.path}"/></svg>`
-}
+}*/
 
 function filterProjects(skill) {
   router.push({ path: '/projects', query: { filter: skill } })
