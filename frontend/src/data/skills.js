@@ -7,7 +7,7 @@ export const skills = [
       { name: 'JavaScript', /*slug: 'javascript', color: '#F7DF1E'*/ },
       { name: 'C',          /*slug: 'c',          color: '#A8B9CC'*/ },
       { name: 'C++',        /*slug: 'cplusplus',  color: '#00599C'*/ },
-      { name: 'CSS',        /*slug: 'css3',       color: '#1572B6'*/ },
+      /*{ name: 'CSS',        slug: 'css3',       color: '#1572B6' },*/
       { name: 'Assembly',   /*slug: null,         color: null*/ },
       { name: 'VHDL',       /*slug: null,         color: null*/ },
     ],
