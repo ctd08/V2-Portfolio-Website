@@ -3,6 +3,7 @@
     <HeroSection />
      <div class="home-content">
       <CurrentlySection />
+      <SkillsSection />
     </div>
   </div>
 </template>
