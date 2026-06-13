@@ -587,6 +587,62 @@ Adding `closes #N`, `fixes #N` or `resolves #N` to a commit message automaticall
 - `feat: add CurrentlySection with data file, closes #25`
 - `docs: update journey log with phase 11`
 
+## Phase 12 — SkillsSection component
+
+### Files created / modified
+- `frontend/src/components/sections/SkillsSection.vue` — skills section with four categories and fade-in on scroll
+- `frontend/src/data/skills.js` — skills data file
+- `frontend/src/views/HomeView.vue` — wired SkillsSection in
+
+### What was built
+
+**SkillsSection**
+Four category strip: Languages, Frameworks, Dev tools, Collaboration tools. All four fade in on scroll with a slight stagger between categories. Filterable chips (Languages and Frameworks) navigate to `/projects?filter=SkillName` on click. Non-filterable chips are display only. Learning chips have a dashed border and a small "learning" badge.
+
+**Skills inventory finalised**
+- Languages: Python, JavaScript, C, C++, CSS, Assembly, VHDL
+- Frameworks: Vue, FastAPI, Docker (learning), Three.js (learning)
+- Dev tools: Git, GitHub, Linux, VSCode, MATLAB, SEGGER, LTSpice
+- Collaboration: Jira, Confluence, Notion, Scribe, Snagit, MS Office
+
+### Decisions made
+
+**Icons removed**
+Simple Icons was installed and tested but removed for three reasons:
+- No icons exist for VHDL, Assembly, SEGGER, Scribe, Snagit — breaks visual consistency
+- Black icons (GitHub, Notion, Three.js) invisible in dark mode
+- Mixed icon/no-icon chips read as unfinished rather than designed
+
+Text-only chips are cleaner, consistent, and honest.
+
+**CSS added to Languages**
+CSS counts as a real skill given the custom design system built for this project. HTML excluded — markup, not a language.
+
+**Assembly added to Languages**
+Directly relevant to embedded systems work. Signals low-level understanding.
+
+### Problems encountered and fixed
+
+**Build failed on GitHub Actions**
+`simple-icons` installed locally but not saved to `package.json`. Fixed with `npm install simple-icons --save`. Also ran `npm audit fix` to address 3 vulnerabilities.
+
+**Node.js 20 deprecation warning**
+GitHub Actions warning about Node.js 20 being deprecated in June 2026. Not urgent — tracked as Issue #29.
+
+### Concepts learned
+
+**`IntersectionObserver` with Vue template refs**
+Collecting elements into a `ref([])` array using the callback ref pattern, then observing each one in `onMounted`. Each element gets a `transitionDelay` based on its index for a stagger effect.
+
+**`router.push` with query params**
+`router.push({ path: '/projects', query: { filter: 'Python' } })` navigates to `/projects?filter=Python`. Projects page will read `route.query.filter` to pre-filter the list.
+
+**`npm install --save`**
+Ensures the package is written to `package.json` so CI environments install it correctly.
+
+### Commits
+- `fix: add simple-icons to dependencies, fix vulnerabilities`
+- `refactor: remove icons from skills section, text only chips`
 
 ## Next steps
 
