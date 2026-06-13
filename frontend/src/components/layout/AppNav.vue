@@ -145,6 +145,12 @@ function toggleTimeCapsule() {
   gap: var(--space-3);
 }
 
+@media (max-width: 640px) {
+  .topbar-name {
+    display: none;
+  }
+}
+
 /* ── CT button ── */
 .ct-btn {
   width: auto;
