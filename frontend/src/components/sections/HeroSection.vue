@@ -126,16 +126,16 @@ const stageRef = ref(null)
 // - drag right (>60): left side becomes professional
 // - drag left (<40): right side becomes creative
 const leftImage = computed(() =>
-  sliderPos.value > 60 ? imgProfessional : imgBackToBack
+  sliderPos.value > 55 ? imgProfessional : imgBackToBack
 )
 
 const rightImage = computed(() =>
-  sliderPos.value < 40 ? imgCreative : imgBackToBack
+  sliderPos.value < 45 ? imgCreative : imgBackToBack
 )
 
 const activeMode = computed(() => {
-  if (sliderPos.value < 40) return 'left'
-  if (sliderPos.value > 60) return 'right'
+  if (sliderPos.value < 45) return 'left'
+  if (sliderPos.value > 55) return 'right'
   return 'right'
 })
 
