@@ -193,7 +193,7 @@ function onTouchDrag(e) {
 .hero-image {
   width: 100%;
   height: 100%;
-  background-size: cover;
+  background-size: contain;
   background-position: center top;
   background-repeat: no-repeat;
   transition: background-image 0.3s ease;
