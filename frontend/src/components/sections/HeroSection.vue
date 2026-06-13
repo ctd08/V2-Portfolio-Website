@@ -6,15 +6,21 @@
 
       <!-- Left side — professional -->
       <div class="hero-side hero-left" :style="{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }">
-        <div class="hero-placeholder left-placeholder">
+        <!--<div class="hero-placeholder left-placeholder">
           <span class="placeholder-label">Professional</span>
+        </div> -->
+        <div class="hero-side hero-left" :style="{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }">
+          <div class="hero-image" :style="{ backgroundImage: `url(${leftImage})` }"></div>
         </div>
       </div>
 
       <!-- Right side — personal -->
       <div class="hero-side hero-right" :style="{ clipPath: `inset(0 0 0 ${sliderPos}%)` }">
-        <div class="hero-placeholder right-placeholder">
+        <!--<div class="hero-placeholder right-placeholder">
           <span class="placeholder-label">Personal</span>
+        </div> -->
+        <div class="hero-side hero-right" :style="{ clipPath: `inset(0 0 0 ${sliderPos}%)` }">
+          <div class="hero-image" :style="{ backgroundImage: `url(${rightImage})` }"></div>
         </div>
       </div>
 
@@ -63,10 +69,16 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import imgBackToBack from '@/assets/images/back-to-back.png'
+import imgProfessional from '@/assets/images/serious_side.png'
+import imgCreative from '@/assets/images/creative_side.png'
 
 const sliderPos = ref(50)
 const dragging = ref(false)
 const stageRef = ref(null)
+
+const leftImage = computed(() => sliderPos.value < 30 ? imgProfessional : imgBackToBack)
+const rightImage = computed(() => sliderPos.value > 70 ? imgCreative : imgBackToBack)
 
 const activeMode = computed(() => sliderPos.value < 50 ? 'left' : 'right')
 
@@ -110,34 +122,43 @@ function onTouchDrag(e) {
   user-select: none;
 }
 
+.hero-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center top;
+  transition: background-image 0.3s ease;
+}
+
 .hero-side {
   position: absolute;
   inset: 0;
 }
 
-.hero-placeholder {
+/*.hero-placeholder {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+*/
 
-.left-placeholder {
+/*.left-placeholder {
   background: var(--color-green-800);
-}
+}*/
 
-.right-placeholder {
+/*.right-placeholder {
   background: var(--color-green-700);
-}
+}*/
 
-.placeholder-label {
+/*.placeholder-label {
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   color: var(--color-green-300);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-}
+}*/
 
 /* ── Handle ── */
 .hero-handle {
