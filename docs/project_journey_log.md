@@ -644,6 +644,51 @@ Ensures the package is written to `package.json` so CI environments install it c
 - `fix: add simple-icons to dependencies, fix vulnerabilities`
 - `refactor: remove icons from skills section, text only chips`
 
+## Phase 13 — Hero images and mobile fix
+
+### Files modified
+- `frontend/src/components/sections/HeroSection.vue` — real images wired into slider, refined swap logic and thresholds
+- `frontend/src/assets/images/` — added back_to_back.png, serious_side.png, creative_side.png
+- `frontend/src/components/layout/AppNav.vue` — topbar name hidden on mobile
+
+### What was done
+
+**Hero slider — real images**
+Three images imported and wired into the two panels via computed properties:
+- `back_to_back.png` — neutral starting image shown on both sides at 50/50
+- `serious_side.png` — appears on left panel when `sliderPos < 35` (professional dominant)
+- `creative_side.png` — appears on right panel when `sliderPos > 65` (personal dominant)
+
+`background-size: contain` used instead of `cover` so the full image is visible. `background-image` CSS transition removed — browsers don't support transitioning background-image so it was doing nothing.
+
+**Slider logic**
+```js
+const leftImage = computed(() =>
+  sliderPos.value < 35 ? imgProfessional : imgBackToBack
+)
+const rightImage = computed(() =>
+  sliderPos.value > 65 ? imgCreative : imgBackToBack
+)
+```
+
+**Mobile fix — topbar name hidden**
+On narrow screens the centered name was overlapping the theme toggle and time capsule icons. Fixed by hiding `.topbar-name` on screens below 640px. The CT button with hamburger and initials provides sufficient identity on mobile. Closes Issue #21.
+
+### Concepts learned
+
+**`background-size: contain` vs `cover`**
+`cover` fills the entire container, cropping the image if needed. `contain` fits the entire image within the container, leaving empty space around it. For portrait photos where the full image needs to be visible, `contain` is the right choice.
+
+**`background-image` is not transitionable**
+CSS `transition` does not work on `background-image` — browsers cannot interpolate between two image values. The property was removed since it was silently doing nothing. For smooth image transitions, opacity-based crossfade with overlapping elements would be needed instead.
+
+**Debugging computed properties**
+Adding `console.log` inside a computed function is a quick way to verify it's firing and what value it's returning — useful when the visual result is unclear.
+
+### Commits
+- `feat: add real images to hero slider, fix: hide topbar name on mobile, closes #21`
+- `docs: update journey log with phase 13`
+
 ## Next steps
 
 ### Frontend — home view
