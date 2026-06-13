@@ -69,7 +69,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import imgBackToBack from '@/assets/images/back-to-back.png'
+import imgBackToBack from '@/assets/images/back_to_back.png'
 import imgProfessional from '@/assets/images/serious_side.png'
 import imgCreative from '@/assets/images/creative_side.png'
 
