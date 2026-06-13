@@ -1,69 +1,113 @@
 <template>
   <section class="hero">
-
-    <!-- Split image container -->
-    <div class="hero-stage" ref="stageRef" @mousemove="onDrag" @mouseup="stopDrag" @mouseleave="stopDrag" @touchmove.prevent="onTouchDrag" @touchend="stopDrag">
-
-      <!-- Left side — professional -->
-      <div class="hero-side hero-left" :style="{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }">
-        <!--<div class="hero-placeholder left-placeholder">
-          <span class="placeholder-label">Professional</span>
-        </div> -->
-        <div class="hero-side hero-left" :style="{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }">
-          <div class="hero-image" :style="{ backgroundImage: `url(${leftImage})` }"></div>
-        </div>
+    <div
+      class="hero-stage"
+      ref="stageRef"
+      @mousemove="onDrag"
+      @mouseup="stopDrag"
+      @mouseleave="stopDrag"
+      @touchmove.prevent="onTouchDrag"
+      @touchend="stopDrag"
+    >
+      <!-- Left side -->
+      <div
+        class="hero-side hero-left"
+        :style="{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }"
+      >
+        <div
+          class="hero-image"
+          :style="{ backgroundImage: `url(${leftImage})` }"
+        ></div>
       </div>
 
-      <!-- Right side — personal -->
-      <div class="hero-side hero-right" :style="{ clipPath: `inset(0 0 0 ${sliderPos}%)` }">
-        <!--<div class="hero-placeholder right-placeholder">
-          <span class="placeholder-label">Personal</span>
-        </div> -->
-        <div class="hero-side hero-right" :style="{ clipPath: `inset(0 0 0 ${sliderPos}%)` }">
-          <div class="hero-image" :style="{ backgroundImage: `url(${rightImage})` }"></div>
-        </div>
+      <!-- Right side -->
+      <div
+        class="hero-side hero-right"
+        :style="{ clipPath: `inset(0 0 0 ${sliderPos}%)` }"
+      >
+        <div
+          class="hero-image"
+          :style="{ backgroundImage: `url(${rightImage})` }"
+        ></div>
       </div>
 
       <!-- Divider handle -->
-      <div class="hero-handle" :style="{ left: sliderPos + '%' }" @mousedown="startDrag" @touchstart.prevent="startDrag">
+      <div
+        class="hero-handle"
+        :style="{ left: sliderPos + '%' }"
+        @mousedown="startDrag"
+        @touchstart.prevent="startDrag"
+      >
         <div class="handle-line" />
         <div class="handle-grip">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <polyline points="15 18 9 12 15 6" />
           </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <polyline points="9 18 15 12 9 6" />
           </svg>
         </div>
       </div>
-
     </div>
 
-    <!-- Hero text — changes based on slider position -->
     <div class="hero-content">
       <p class="hero-eyebrow text-eyebrow">
-        {{ activeMode === 'right' ? 'Software & Hardware · Medtech · Systems' : 'Reflective · Observant · Curious' }}
+        {{ activeMode === 'right'
+          ? 'Software & Hardware · Medtech · Systems'
+          : 'Reflective · Observant · Curious' }}
       </p>
+
       <h1 class="hero-title">
-        Servus, I'm <em>Cristina</em> 
+        Servus, I'm <em>Cristina</em>
         <Transition name="swap" mode="out-in">
           <span :key="activeMode" class="hero-subtitle">
-            {{ activeMode === 'right' ? 'I design systems with purpose.' : 'I also love to create and learn new things.' }}
+            {{
+              activeMode === 'right'
+                ? 'I design systems with purpose.'
+                : 'I also love to create and learn new things.'
+            }}
           </span>
         </Transition>
       </h1>
+
       <div class="hero-actions">
         <Transition name="swap" mode="out-in">
           <div :key="activeMode" class="hero-buttons">
-            <RouterLink v-if="activeMode === 'right'" to="/work" class="btn-primary">See my work</RouterLink>
-            <RouterLink v-if="activeMode === 'right'" to="/about" class="btn-ghost">About me</RouterLink>
-            <RouterLink v-if="activeMode === 'left'" to="/about" class="btn-primary">Get to know me</RouterLink>
-            <RouterLink v-if="activeMode === 'left'" to="/blog" class="btn-ghost">Read my writing</RouterLink>
+            <RouterLink v-if="activeMode === 'right'" to="/work" class="btn-primary">
+              See my work
+            </RouterLink>
+            <RouterLink v-if="activeMode === 'right'" to="/about" class="btn-ghost">
+              About me
+            </RouterLink>
+
+            <RouterLink v-if="activeMode === 'left'" to="/about" class="btn-primary">
+              Get to know me
+            </RouterLink>
+            <RouterLink v-if="activeMode === 'left'" to="/blog" class="btn-ghost">
+              Read my writing
+            </RouterLink>
           </div>
         </Transition>
       </div>
     </div>
-
   </section>
 </template>
 
@@ -77,10 +121,23 @@ const sliderPos = ref(50)
 const dragging = ref(false)
 const stageRef = ref(null)
 
-const leftImage = computed(() => sliderPos.value < 45 ? imgProfessional : imgBackToBack)
-const rightImage = computed(() => sliderPos.value > 55 ? imgCreative : imgBackToBack)
+// Corrected behavior:
+// - center (40–60): neutral image on both sides
+// - drag right (>60): left side becomes professional
+// - drag left (<40): right side becomes creative
+const leftImage = computed(() =>
+  sliderPos.value > 60 ? imgProfessional : imgBackToBack
+)
 
-const activeMode = computed(() => sliderPos.value < 50 ? 'left' : 'right')
+const rightImage = computed(() =>
+  sliderPos.value < 40 ? imgCreative : imgBackToBack
+)
+
+const activeMode = computed(() => {
+  if (sliderPos.value < 40) return 'left'
+  if (sliderPos.value > 60) return 'right'
+  return 'right'
+})
 
 function startDrag() {
   dragging.value = true
@@ -90,18 +147,22 @@ function stopDrag() {
   dragging.value = false
 }
 
+function updateSlider(clientX) {
+  const rect = stageRef.value?.getBoundingClientRect()
+  if (!rect) return
+
+  const x = clientX - rect.left
+  sliderPos.value = Math.min(Math.max((x / rect.width) * 100, 5), 95)
+}
+
 function onDrag(e) {
   if (!dragging.value) return
-  const rect = stageRef.value.getBoundingClientRect()
-  const x = e.clientX - rect.left
-  sliderPos.value = Math.min(Math.max((x / rect.width) * 100, 5), 95)
+  updateSlider(e.clientX)
 }
 
 function onTouchDrag(e) {
   if (!dragging.value) return
-  const rect = stageRef.value.getBoundingClientRect()
-  const x = e.touches[0].clientX - rect.left
-  sliderPos.value = Math.min(Math.max((x / rect.width) * 100, 5), 95)
+  updateSlider(e.touches[0].clientX)
 }
 </script>
 
@@ -112,22 +173,16 @@ function onTouchDrag(e) {
   margin: 0 auto;
 }
 
-/* ── Stage ── */
+/* Stage */
 .hero-stage {
   position: relative;
-  height: 50vh;
+  height: 65vh;
+  min-height: 560px;
+  max-height: 760px;
   border-radius: var(--radius-lg);
   overflow: hidden;
   cursor: col-resize;
   user-select: none;
-}
-
-.hero-image {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center top;
-  transition: background-image 0.3s ease;
 }
 
 .hero-side {
@@ -135,32 +190,16 @@ function onTouchDrag(e) {
   inset: 0;
 }
 
-/*.hero-placeholder {
+.hero-image {
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  transition: background-image 0.3s ease;
 }
-*/
 
-/*.left-placeholder {
-  background: var(--color-green-800);
-}*/
-
-/*.right-placeholder {
-  background: var(--color-green-700);
-}*/
-
-/*.placeholder-label {
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  color: var(--color-green-300);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}*/
-
-/* ── Handle ── */
+/* Handle */
 .hero-handle {
   position: absolute;
   top: 0;
@@ -198,7 +237,7 @@ function onTouchDrag(e) {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* ── Content ── */
+/* Content */
 .hero-content {
   padding-top: var(--space-8);
 }
@@ -231,7 +270,7 @@ function onTouchDrag(e) {
   flex-wrap: wrap;
 }
 
-/* ── Buttons ── */
+/* Buttons */
 .btn-primary {
   display: inline-block;
   background: var(--accent-primary);
@@ -263,17 +302,43 @@ function onTouchDrag(e) {
   border-color: var(--accent-primary);
 }
 
-/* ── Transitions ── */
+/* Transitions */
 .swap-enter-active,
 .swap-leave-active {
   transition: opacity var(--transition-base), transform var(--transition-base);
 }
+
 .swap-enter-from {
   opacity: 0;
   transform: translateY(6px);
 }
+
 .swap-leave-to {
   opacity: 0;
   transform: translateY(-6px);
+}
+
+@media (max-width: 1024px) {
+  .hero-stage {
+    height: 56vh;
+    min-height: 460px;
+    max-height: 620px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .hero-stage {
+    height: 48vh;
+    min-height: 360px;
+    max-height: 500px;
+  }
+
+  .hero-title {
+    font-size: var(--text-3xl);
+  }
 }
 </style>
