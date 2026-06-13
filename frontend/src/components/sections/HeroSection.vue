@@ -196,7 +196,7 @@ function onTouchDrag(e) {
   background-size: contain;
   background-position: center top;
   background-repeat: no-repeat;
-  transition: background-image 0.3s ease;
+  /*transition: background-image 0.3s ease;*/
 }
 
 /* Handle */
