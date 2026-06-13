@@ -77,8 +77,8 @@ const sliderPos = ref(50)
 const dragging = ref(false)
 const stageRef = ref(null)
 
-const leftImage = computed(() => sliderPos.value < 40 ? imgProfessional : imgBackToBack)
-const rightImage = computed(() => sliderPos.value > 60 ? imgCreative : imgBackToBack)
+const leftImage = computed(() => sliderPos.value < 45 ? imgProfessional : imgBackToBack)
+const rightImage = computed(() => sliderPos.value > 55 ? imgCreative : imgBackToBack)
 
 const activeMode = computed(() => sliderPos.value < 50 ? 'left' : 'right')
 
