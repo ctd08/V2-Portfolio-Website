@@ -53,7 +53,7 @@ const hints = {
   '/blog':    'This will be where I write — thoughts, ideas, things I learn.',
   '/cv':      'This will have my CV — abstract version on the page, downloadable for recruiters.',
   '/contact': 'This will have a contact form with categories for different types of enquiries.',
-  
+}
 
 const pageHint = computed(() => hints[route.path] || 'This page is coming soon.')
 
