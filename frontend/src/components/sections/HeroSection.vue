@@ -91,10 +91,10 @@
       <div class="hero-actions">
         <Transition name="swap" mode="out-in">
           <div :key="activeMode" class="hero-buttons">
-            <RouterLink v-if="activeMode === 'right'" to="/work" class="btn-primary">
+            <RouterLink v-if="activeMode === 'right'" to="/projects" class="btn-primary">
               See my work
             </RouterLink>
-            <RouterLink v-if="activeMode === 'right'" to="/about" class="btn-ghost">
+            <RouterLink v-if="activeMode === 'right'" to="/career" class="btn-ghost">
               About me
             </RouterLink>
 
