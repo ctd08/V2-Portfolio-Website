@@ -5,6 +5,7 @@
       <CurrentlySection />
       <SkillsSection />
       <ProjectsSection />
+      <CompaniesSection />
     </div>
   </div>
 </template>
@@ -14,6 +15,7 @@ import HeroSection from '@/components/sections/HeroSection.vue'
 import CurrentlySection from '@/components/sections/CurrentlySection.vue'
 import SkillsSection from '@/components/sections/SkillsSection.vue'
 import ProjectsSection from '@/components/sections/ProjectsSection.vue'
+import CompaniesSection from '@/components/sections/CompaniesSection.vue';
 </script>
 
 <style scoped>
