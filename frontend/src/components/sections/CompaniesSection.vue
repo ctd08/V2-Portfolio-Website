@@ -87,9 +87,10 @@ import { companies } from '@/data/companies.js'
 .logo-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   padding: 4px;
   mix-blend-mode: multiply;
+  object-position : right center;
 }
 
 [data-theme="dark"] .logo-img {
