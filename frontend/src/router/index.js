@@ -7,6 +7,7 @@ const routes = [
   { path: '/about',    component: UnderConstructionView },
   { path: '/career',   component: UnderConstructionView },
   { path: '/projects', component: UnderConstructionView },
+  { path: '/projects/:id', component: UnderConstructionView },
   { path: '/blog',     component: UnderConstructionView },
   { path: '/cv',       component: UnderConstructionView },
   { path: '/contact',  component: UnderConstructionView },
