@@ -1,20 +1,19 @@
+import igelLogo from '@/assets/images/igel-logo.svg'
+import ukaLogo from '@/assets/images/uka-logo.jpg'
+
+
 export const companies = [
-  {
-    id: 'kora',
-    name: 'KORA Studienzentrum',
-    year: '2023',
-    logo: null, // replace with import once you have the logo
-  },
+  
   {
     id: 'igel',
     name: 'IGEL Technology',
-    year: '2024',
-    logo: null,
+    year: 'Aug 2025 - March 2026',
+    logo: igelLogo,
   },
   {
     id: 'uka',
     name: 'Uniklinikum Augsburg',
-    year: '2025–present',
-    logo: null,
+    year: '2023 · 2025–present',
+    logo: ukaLogo,
   },
 ]

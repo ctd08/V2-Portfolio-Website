@@ -89,6 +89,11 @@ import { companies } from '@/data/companies.js'
   height: 100%;
   object-fit: contain;
   padding: 4px;
+  mix-blend-mode: multiply;
+}
+
+[data-theme="dark"] .logo-img {
+  mix-blend-mode: screen;
 }
 
 .logo-placeholder {
