@@ -689,12 +689,95 @@ Adding `console.log` inside a computed function is a quick way to verify it's fi
 - `feat: add real images to hero slider, fix: hide topbar name on mobile, closes #21`
 - `docs: update journey log with phase 13`
 
+## Phase 14 — ProjectsSection and CompaniesSection
+
+### Files created / modified
+- `frontend/src/data/projects.js` — projects data file
+- `frontend/src/components/sections/ProjectsSection.vue` — project cards with carousel
+- `frontend/src/data/companies.js` — companies data file with logos
+- `frontend/src/components/sections/CompaniesSection.vue` — companies strip with logos
+- `frontend/src/assets/images/igel-logo.svg` — downloaded via curl
+- `frontend/src/assets/images/uka-logo.jpg` — saved manually
+- `frontend/src/views/HomeView.vue` — wired both sections in
+- `frontend/src/router/index.js` — added `/projects/:id` route
+- `frontend/src/data/skills.js` — removed Three.js (not yet used)
+- `frontend/src/components/sections/HeroSection.vue` — fixed button links to /projects and /career
+
+### What was built
+
+**ProjectsSection**
+Horizontal card layout that becomes a carousel when cards overflow the screen width. Cards snap cleanly using `scroll-snap-type`. Scroll arrows appear dynamically only when there is content to scroll to. Each card has a green left border accent, title in display font, short description, and filterable tags. Featured project gets the green left border permanently.
+
+Projects showcased:
+- V2 Portfolio Website
+- DrawMeMaybe
+- Pipe Puzzle Solver
+- Bonbon Automat
+
+**CompaniesSection**
+Two company pills with logo, name, and year range. Clicking navigates to `/career?filter=company-id` for future filtering. Logo handling is per-company using dynamic CSS classes to avoid styles leaking between logos.
+
+Companies:
+- Uniklinikum Augsburg (2023 · 2025–present) — two roles, one entry
+- IGEL Technology (Aug 2025 – March 2026)
+
+**UnderConstructionView**
+Built and wired to all unfinished routes. Shows a page-specific hint based on `route.path`, a checklist of what's done and what's pending, and a live completion percentage. Closes Issue #24 (was incorrectly numbered — actually the construction view issue).
+
+### Decisions made
+
+**UKA shown once on home page**
+Two separate roles at UKA (KORA 2023, MeDIHA 2025–present) but shown as one company entry on home. Career page will show both roles when filtered.
+
+**KORA not listed separately**
+Contract was with Uniklinikum Augsburg — KORA is the study name, not the employer.
+
+**Three.js removed from skills**
+Not yet used in any project. Will be added back when actually used.
+
+**Logo handling strategy**
+- IGEL: dark SVG, `object-fit: contain`, `filter: invert(1)` in dark mode only via `.logo-igel`
+- UKA: jpg with white background, `object-fit: cover`, `object-position: 90% center` to crop to symbol via `.logo-uka`
+- Each logo gets a company-specific class (`:class="logo-${company.id}"`) to avoid CSS interference between logos
+
+### Problems encountered and fixed
+
+**IGEL logo invisible in dark mode**
+Dark SVG on dark background. Fixed with `filter: invert(1)` scoped to `[data-theme="dark"] .logo-igel`.
+
+**UKA logo turned orange**
+`filter: invert(1)` was applied globally to all `.logo-img` elements, inverting the UKA blue to orange. Fixed by scoping filters to individual company classes.
+
+**Hero buttons linking to wrong routes**
+"See my work" was linking to `/work` which didn't exist. "About me" was linking to `/about` instead of `/career`. Fixed both in `HeroSection.vue`.
+
+### Concepts learned
+
+**`scroll-snap-type` and `scroll-snap-align`**
+CSS scroll snapping makes carousels snap cleanly to each card rather than stopping at arbitrary positions. `scroll-snap-type: x mandatory` on the container, `scroll-snap-align: start` on each card.
+
+**Hiding scrollbars while keeping scroll**
+`scrollbar-width: none` for Firefox, `::-webkit-scrollbar { display: none }` for Chrome/Safari. The element still scrolls — it just looks clean.
+
+**`mix-blend-mode` for logo backgrounds**
+`multiply` makes white pixels transparent in light mode. `screen` does the same in dark mode. Useful for logos with white backgrounds when you can't get a transparent version.
+
+**`object-fit: cover` vs `contain`**
+`cover` fills the container and crops excess — good for cropping to a specific part of an image. `contain` fits the whole image inside — good for logos that need to be fully visible.
+
+**`object-position`**
+Controls which part of the image is shown when using `object-fit: cover`. `90% center` shifts focus to the right side of the image — used to crop the UKA wordmark and show only the symbol.
+
+**Dynamic CSS classes with `:class`**
+`:class="\`logo-${company.id}\`"` generates unique classes per company (`logo-uka`, `logo-igel`). Allows per-logo CSS without affecting other logos.
+
+
 ## Next steps
 
 ### Frontend — home view
-- [ ] Build `ProjectsSection.vue` + populate `projects.js` with real data
-- [ ] Build skills/logos section (staggered fade-in on scroll, SVG icons, light/dark mode)
-- [ ] Build companies section (logo + name + year range)
+- [x] Build `ProjectsSection.vue` + populate `projects.js` with real data
+- [x] Build skills/logos section (staggered fade-in on scroll, SVG icons, light/dark mode)
+- [x] Build companies section (logo + name + year range)
 - [ ] Build contact CTA section at bottom of home
 - [ ] Wire all sections into `HomeView.vue`
 
