@@ -15,6 +15,7 @@
             :src="company.logo"
             :alt="company.name"
             class="logo-img"
+            :class="`logo-${company.id}`"
           />
           <span v-else class="logo-placeholder">
             {{ company.name.charAt(0) }}
@@ -87,15 +88,25 @@ import { companies } from '@/data/companies.js'
 .logo-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   padding: 4px;
-  mix-blend-mode: multiply;
-  object-position : right center;
+  
 }
 
-[data-theme="dark"] .logo-img {
-  mix-blend-mode: screen;
-  filter : invert(1);
+/* IGEL — dark SVG, needs invert in dark mode */
+[data-theme="dark"] .logo-igel {
+  filter: invert(1);
+  object-fit: contain;
+}
+
+[data-theme="light"] .logo-igel {
+  object-fit: contain;
+}
+
+/* UKA — crop to show just the symbol */
+.logo-uka {
+  object-fit: cover;
+  object-position: 90% center;
+  padding: 0;
 }
 
 .logo-placeholder {
