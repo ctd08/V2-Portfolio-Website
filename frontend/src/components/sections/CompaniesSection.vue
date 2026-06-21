@@ -57,8 +57,8 @@ import { companies } from '@/data/companies.js'
 .company-pill {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
-  padding: var(--space-4) var(--space-6);
+  gap: var(--space-6);
+  padding: var(--space-6) var(--space-8);
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
   background: var(--bg-secondary);
@@ -72,8 +72,8 @@ import { companies } from '@/data/companies.js'
 }
 
 .company-logo {
-  width: 40px;
-  height: 40px;
+  width: 64px;
+  height: 64px;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
   background: var(--bg-surface);
@@ -94,6 +94,7 @@ import { companies } from '@/data/companies.js'
 
 [data-theme="dark"] .logo-img {
   mix-blend-mode: screen;
+  filter : invert(1);
 }
 
 .logo-placeholder {
