@@ -19,7 +19,7 @@ export const skills = [
       { name: 'Vue',      /*slug: 'vuedotjs', color: '#41B883'*/ },
       { name: 'FastAPI',  /*slug: 'fastapi',  color: '#009688'*/ },
       { name: 'Docker',   /*slug: 'docker',   color: '#2496ED', learning: true*/ },
-      { name: 'Three.js', /*slug: 'threedotjs', color: '#000000', learning: true*/ },
+      
     ],
   },
   {
