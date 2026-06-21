@@ -13,7 +13,7 @@ export const companies = [
   {
     id: 'uka',
     name: 'Uniklinikum Augsburg',
-    year: '2023 · 2025–present',
+    year: '2023 · 2026–present',
     logo: ukaLogo,
   },
 ]
