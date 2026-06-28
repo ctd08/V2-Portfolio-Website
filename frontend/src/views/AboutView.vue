@@ -15,8 +15,8 @@
         <p class="section-eyebrow">Who I am</p>
         <h1 class="about-title">
           I spent most of my childhood<br>
-          wondering how things worked<br>
-          <em>and never asking out loud.</em>
+          wondering how things worked and never asking out loud. <br>
+          <em>Now I build them.</em>
         </h1>
       </section>
 
