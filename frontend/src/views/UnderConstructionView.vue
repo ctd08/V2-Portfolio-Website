@@ -65,7 +65,7 @@ const checklist = [
   { label: 'Skills section',               done: true  },
   { label: 'Projects section',             done: true },
   { label: 'Companies section',            done: true },
-  { label: 'About page',                   done: false },
+  { label: 'About page',                   done: true },
   { label: 'Career page',                  done: false },
   { label: 'Blog',                         done: false },
   { label: 'CV page',                      done: false },
