@@ -50,10 +50,13 @@
         <div class="interest-chips" style="margin-top: var(--space-6)">
             <span class="chip accent">Medical devices</span>
             <span class="chip accent">Embedded systems</span>
-            <span class="chip accent">Innovation</span>
             <span class="chip">Aerospace</span>
             <span class="chip">Neuropsychology</span>
-            <span class="chip">Systems thinking</span>
+            <span class="chip accent">Neuroscience</span>
+            <span class="chip accent">PCB Design</span>
+            <span class="chip accent">Signal processing</span>
+            <span class="chip accent">Robotics</span>
+            <span class="chip accent">Machine learning</span>
         </div>
         </section>
 
