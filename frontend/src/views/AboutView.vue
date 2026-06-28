@@ -35,19 +35,27 @@
         </div>
       </section>
 
-      <!-- What drives me -->
-      <section class="about-section">
+            <!-- What drives me -->
+        <section class="about-section">
         <p class="section-eyebrow">What drives me</p>
-        <p class="story-single">Medical devices that solve real problems. Taking everyday technology apart, finding the constraints, making it better. The intersection of hardware, software, and human health — with a quiet interest in aerospace that never fully went away.</p>
-        <div class="interest-chips">
-          <span class="chip accent">Medical devices</span>
-          <span class="chip accent">Embedded systems</span>
-          <span class="chip accent">Innovation</span>
-          <span class="chip">Aerospace</span>
-          <span class="chip">Neuropsychology</span>
-          <span class="chip">Systems thinking</span>
+        <p class="story-single">
+            I want to build medical devices that solve real problems — not just incremental improvements, but things that genuinely change what's possible for doctors and patients. The kind of work where you take a constraint seriously, sit with it long enough, and come out the other side with something that didn't exist before.
+        </p>
+        <p class="story-single">
+            What draws me to medtech specifically is the weight of it. A device that works in a hospital or in a patient's home has to work — not mostly, not usually, but always. That kind of constraint forces a different quality of thinking, and I find that more interesting than building things where failure is just a bug to fix later.
+        </p>
+        <p class="story-single">
+            There's also a quieter interest in aerospace that never fully went away. Devices that need to function under extreme conditions, in environments humans weren't designed for — that intersection with health monitoring and life support sits somewhere I'd like to explore one day.
+        </p>
+        <div class="interest-chips" style="margin-top: var(--space-6)">
+            <span class="chip accent">Medical devices</span>
+            <span class="chip accent">Embedded systems</span>
+            <span class="chip accent">Innovation</span>
+            <span class="chip">Aerospace</span>
+            <span class="chip">Neuropsychology</span>
+            <span class="chip">Systems thinking</span>
         </div>
-      </section>
+        </section>
 
       <!-- How I work -->
       <section class="about-section">
@@ -129,6 +137,8 @@ import ledImg from '@/assets/images/about-led.jpg'
 /* ── Content ── */
 .about-content {
   padding: 0 var(--space-6);
+  max-width: 780px;
+  margin: 0 auto;
 }
 
 .about-section {
@@ -169,7 +179,7 @@ import ledImg from '@/assets/images/about-led.jpg'
   flex-direction: column;
   gap: var(--space-4);
   max-width: 640px;
-  margin-bottom: var(--space-10);
+  margin-bottom: var(--space-12);
 }
 
 .story p {
@@ -190,6 +200,7 @@ import ledImg from '@/assets/images/about-led.jpg'
 /* ── LED photo ── */
 .led-wrap {
   max-width: 480px;
+  margin: 0 auto;
 }
 
 .led-img {
@@ -197,6 +208,7 @@ import ledImg from '@/assets/images/about-led.jpg'
   border-radius: var(--radius-lg);
   display: block;
   margin-bottom: var(--space-2);
+  object-position: center;
 }
 
 .led-caption {
