@@ -94,11 +94,11 @@
             <RouterLink v-if="activeMode === 'right'" to="/projects" class="btn-primary">
               See my work
             </RouterLink>
-            <RouterLink v-if="activeMode === 'right'" to="/career" class="btn-ghost">
+            <RouterLink v-if="activeMode === 'right'" to="/about" class="btn-ghost">
               About me
             </RouterLink>
 
-            <RouterLink v-if="activeMode === 'left'" to="/about" class="btn-primary">
+            <RouterLink v-if="activeMode === 'left'" to="" class="btn-primary">
               Get to know me
             </RouterLink>
             <RouterLink v-if="activeMode === 'left'" to="/blog" class="btn-ghost">
