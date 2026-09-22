@@ -112,8 +112,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import coverImg from '@/assets/images/about-cover.png'
-import ledImg from '@/assets/images/about-led.jpg'
+import coverImg from '@/assets/images/evolution.png'
 import { timeline } from '@/data/timeline.js'
 
 const fadeEls = ref([])
