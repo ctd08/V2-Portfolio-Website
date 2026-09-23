@@ -49,6 +49,19 @@
                 <div class="card-year">{{ entry.year }}</div>
                 <div class="card-title">{{ entry.title }}</div>
                 <div class="card-sub">{{ entry.sub }}</div>
+                <div class="card-description">{{ entry.description }}</div>
+                <div v-if="entry.projects" class="card-projects">
+                <div class="card-projects-label">Notable projects</div>
+
+                <RouterLink
+                  v-for="project in entry.projects"
+                  :key="project.title"
+                  :to="project.link"
+                  class="card-project"
+                >
+                  {{ project.title }}
+                </RouterLink>
+              </div>
                 <span class="card-tag" :class="entry.type">
                   {{ entry.type === 'edu' ? 'Education' : 'Work' }}
                 </span>
@@ -74,6 +87,19 @@
                 <div class="card-year">{{ entry.year }}</div>
                 <div class="card-title">{{ entry.title }}</div>
                 <div class="card-sub">{{ entry.sub }}</div>
+                <div class="card-description">{{ entry.description }}</div>
+                <div v-if="entry.projects" class="card-projects">
+                <div class="card-projects-label">Notable projects</div>
+
+                <RouterLink
+                  v-for="project in entry.projects"
+                  :key="project.title"
+                  :to="project.link"
+                  class="card-project"
+                >
+                  {{ project.title }}
+                </RouterLink>
+              </div>
                 <span class="card-tag" :class="entry.type">
                   {{ entry.type === 'edu' ? 'Education' : 'Work' }}
                 </span>
@@ -88,6 +114,19 @@
                 <div class="card-year">{{ entry.overlap.year }}</div>
                 <div class="card-title">{{ entry.overlap.title }}</div>
                 <div class="card-sub">{{ entry.overlap.sub }}</div>
+                <div class="card-description">{{ entry.overlap.description }}</div>
+                <!--<div v-if="entry.projects" class="card-projects">
+                <div class="card-projects-label">Notable projects</div>
+
+                <RouterLink
+                  v-for="project in entry.projects"
+                  :key="project.title"
+                  :to="project.link"
+                  class="card-project"
+                >
+                  {{ project.title }}
+                </RouterLink>
+              </div>-->
                 <span class="card-tag work">Work</span>
               </RouterLink>
             </div>
@@ -274,6 +313,39 @@ onUnmounted(() => {
 .card-tag.edu { background: rgba(74,158,106,0.1); color: var(--accent-primary); }
 /*.card-tag.edu {background: red !important; color: white !important; }*/
 .card-tag.work { background: rgba(200,169,110,0.1); color: var(--accent-warm); }
+.card-description {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+}
+
+.card-projects {
+  margin: var(--space-4) 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.card-projects-label {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.card-project {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--accent-primary);
+  text-decoration: none;
+  margin-bottom: 4px;
+}
+
+.card-project:hover {
+  text-decoration: underline;
+}
 
 /* ── Fade in ── */
 .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
