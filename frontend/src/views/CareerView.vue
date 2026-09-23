@@ -255,6 +255,7 @@ onUnmounted(() => {
 /* ── Cards ── */
 .tl-card {
   display: block;
+  width: 100%;
   text-decoration: none;
   padding: var(--space-7) var(--space-8);
   border-radius: var(--radius-lg);
@@ -262,6 +263,7 @@ onUnmounted(() => {
   background: var(--bg-secondary);
   transition: border-color var(--transition-fast), background var(--transition-fast);
   max-width: 420px;
+  padding: 28px 32px;
 }
 .tl-card:hover { border-color: var(--accent-primary); background: var(--bg-surface); }
 
