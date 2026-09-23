@@ -256,7 +256,7 @@ onUnmounted(() => {
 .tl-card {
   display: block;
   text-decoration: none;
-  padding: var(--space-4) var(--space-5);
+  padding: var(--space-6) var(--space-7);
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
   background: var(--bg-secondary);
