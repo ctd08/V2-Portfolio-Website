@@ -1,5 +1,16 @@
 export const timeline = [
+    
     {
+        id: 'tha-mt',
+        year: 'October 2026 - dato',
+        title: 'Student · Technische Hochschule Augsburg',
+        sub: 'Medizintechnik',
+        description: 'placeholder txt',
+        type : 'education',
+        side : 'left',
+        image: 'tha-mt.jpg',
+        link: '/career/tha-mt'
+    },{
         id: 'uka-mediha',
         year: 'June 2026 - September 2026',
         title: 'HiWi · Institut für Digitale Medizin',
@@ -11,17 +22,6 @@ export const timeline = [
         link: '/career/uka-mediha'
 
     }, 
-    {
-        id: 'tha-mt',
-        year: 'October 2026 - dato',
-        title: 'Student · Technische Hochschule Augsburg',
-        sub: 'Medizintechnik',
-        description: 'placeholder txt',
-        type : 'education',
-        side : 'left',
-        image: 'tha-mt.jpg',
-        link: '/career/tha-mt'
-    },
     {
         id: 'tha-ti',
         year: 'October 2023 - March 2026',
