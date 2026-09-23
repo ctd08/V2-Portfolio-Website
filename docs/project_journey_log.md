@@ -771,6 +771,131 @@ Controls which part of the image is shown when using `object-fit: cover`. `90% c
 **Dynamic CSS classes with `:class`**
 `:class="\`logo-${company.id}\`"` generates unique classes per company (`logo-uka`, `logo-igel`). Allows per-logo CSS without affecting other logos.
 
+## Phase 15 — CareerView foundation
+
+### Files created / modified
+- `frontend/src/views/CareerView.vue` — initial career page (renamed from AboutView)
+- `frontend/src/views/AboutView.vue` — replaced with UnderConstructionView wrapper
+- `frontend/src/router/index.js` — /career points to CareerView, /about to AboutView
+- `frontend/src/assets/images/about-cover.png` — avatar cover image
+- `frontend/src/assets/images/about-led.jpg` — LED breadboard photo
+
+### What was built
+
+**CareerView — initial version**
+Full career page with six sections: cover image, punchy intro headline, origin story in three paragraphs, what drives me with three expanded paragraphs and interest chips, how I work as four philosophy cards, and a projects CTA at the bottom.
+
+**Origin story — final text**
+Three paragraphs in a dry, self-aware voice. Specific details: dance/tennis/languages/neuropsychology, the safer path at school, September 2023, the LED on a breadboard. Several drafts were rejected for being too dramatic before landing on the right tone.
+
+**LED photo**
+Real photo of first LED on a breadboard — green LED glowing on a white breadboard. Centered, capped at 480px, with mono caption "My first LED. Green, obviously."
+
+**Philosophy cards**
+Four cards: Quality over quantity, Purpose over obligation, Structure enables freedom, Small and trusted.
+
+**Naming correction**
+Originally built as AboutView.vue then renamed to CareerView.vue — content is professional/career focused matching the original decision that /about is personal and /career is professional.
+
+### Decisions made
+
+**Content belongs on /career not /about**
+The origin story, medtech vision, and work philosophy are professional content. /about is reserved for the personal page — personality, AuDHD, music, books, curiosity.
+
+**What drives me — expanded**
+Three paragraphs instead of chips only. Covers the weight of medtech constraints, building things that must always work, and the aerospace interest that never went away.
+
+**Layout**
+Content column max-width 780px centered with margin: 0 auto — reads like an article. LED photo centered at 480px max-width.
+
+### Problems encountered and fixed
+
+**AboutView showing career content**
+Both files had identical content after rename. Fixed by replacing AboutView.vue with a simple UnderConstructionView wrapper.
+
+### Writing decisions
+
+Closing line of origin story: "And after 3 years of computer engineering and a lot of self-doubt, today I managed to turn on my first LED on a breadboard." — written by Cristina, not generated.
+
+### Commits
+- `feat: add CareerView with origin story, philosophy and projects CTA`
+- `refactor: rename AboutView to CareerView, correct routing`
+- `docs: update journey log with phase 15`
+
+## Phase 16 — Career page timeline and content
+
+### Files created / modified
+- `frontend/src/views/CareerView.vue` — full career page with timeline
+- `frontend/src/data/timeline.js` — timeline data file
+- `frontend/src/assets/images/evolution.png` — career cover image
+- `frontend/src/router/index.js` — career sub-routes added
+
+### What was built
+
+**CareerView — timeline**
+A centered vertical timeline with left/right alternating cards. Education cards sit on the left, work cards on the right. When education and work overlap in the same period, both appear at the same timeline point — education on the left, work on the right — connected by a single dot. Dot colour signals the type: green for education, amber for work, light green for overlap.
+
+Cards contain: year, title, institution/company, description, optional notable projects section, and a type tag. All cards are clickable and link to individual career entry pages (currently all pointing to UnderConstructionView).
+
+**Timeline data structure:**
+```js
+{
+  id, year, title, sub, description,
+  type,     // 'edu' or 'work'
+  side,     // 'left' or 'right'
+  image, link,
+  projects: [{ title, description, link }],
+  overlap: { ...same structure }
+}
+```
+
+**Timeline entries (reverse chronological):**
+- Medical Engineering @ THA (Oct 2026–present) — overlaps with Student Assistant @ UKA Radiology
+- Study Assistant @ UKA MeDIHA (Jun–Sep 2026)
+- Computer Engineering @ THA (Oct 2023–Mar 2026) — with 3 notable projects, overlaps with Working Student @ IGEL
+- FOS International Economics @ FOSBOS Augsburg (Sep 2020–Jul 2023) — overlaps with Intern/Admin Assistant @ KORA
+
+**Cover image**
+`evolution.png` — landscape AI-generated image showing four versions of Cristina from childhood to medical engineer. Sits above the timeline as a chapter header. Fixed with `aspect-ratio: 16/7` after `height: 70vh` was overriding it.
+
+### Decisions made
+
+**Projects on career cards**
+Notable projects can appear on any card (education or work), not just education. They do not appear on overlap cards. This keeps overlap cards concise.
+
+**Nested RouterLink — known issue**
+Outer card is a `RouterLink` and project links inside are also `RouterLink` elements — invalid HTML since you cannot nest `<a>` inside `<a>`. Works in most browsers but should be fixed before launch. Fix: convert outer card to a `div` with `@click="router.push(entry.link)"` and add `@click.stop` on inner project links.
+
+**FOS entry**
+Starts from September 2020 not 2021 — corrected in data file.
+
+**KORA entries**
+Multiple experiences consolidated: internship + administrative assistant role shown as one overlap entry with combined description. Summer job noted as separate but not yet added as its own entry.
+
+### Problems encountered and fixed
+
+**`aspect-ratio` ignored on cover image**
+`height: 70vh` and `max-height: 700px` were overriding `aspect-ratio: 16/7`. Fixed by removing all explicit height properties and letting `aspect-ratio` control the container height automatically.
+
+**Education tag not showing background**
+`type` value in `timeline.js` didn't match the CSS class name. Fixed by correcting the type value so `.card-tag.edu` applied correctly. Also fixed an invalid `rgba(..., 2.5)` opacity value that was causing styling problems.
+
+**AboutView showing career content**
+Both `AboutView.vue` and `CareerView.vue` had the same content after the rename. Fixed by replacing `AboutView.vue` with a simple wrapper around `UnderConstructionView`.
+
+### Concepts learned
+
+**`aspect-ratio` vs explicit height**
+When both `height` and `aspect-ratio` are set, `height` wins — `aspect-ratio` is only used when one dimension is not explicitly set. To use `aspect-ratio` for a full-width image container, remove `height`, `min-height`, and `max-height` entirely.
+
+**Nested anchors**
+HTML does not allow `<a>` elements nested inside other `<a>` elements. Browser behaviour is undefined — some browsers split the outer anchor, others ignore the inner one. The correct fix is to make the outer element a non-anchor (`div`) and handle navigation with JavaScript (`router.push()`), then add `@click.stop` on inner links to prevent event bubbling.
+
+### Commits
+- `feat: add career timeline with overlap support and cover image`
+- `fix: cover image aspect ratio`
+- `fix: education tag CSS class mismatch`
+- `docs: update journey log with phase 16`
 
 ## Next steps
 
@@ -779,16 +904,16 @@ Controls which part of the image is shown when using `object-fit: cover`. `90% c
 - [x] Build skills/logos section (staggered fade-in on scroll, SVG icons, light/dark mode)
 - [x] Build companies section (logo + name + year range)
 - [ ] Build contact CTA section at bottom of home
-- [ ] Wire all sections into `HomeView.vue`
+- [x] Wire all sections into `HomeView.vue`
 
 ### Frontend — individual views
-- [ ] `AboutView.vue` — personality, AuDHD, music, books, neuropsychology, philosophy
-- [ ] `CareerView.vue` — medtech journey, tech stack, projects, papers, courses (future)
+- [x] `AboutView.vue`
+- [x] `CareerView.vue` 
 - [ ] `ProjectView.vue` — individual project pages
 - [ ] `BlogView.vue` — writing and thoughts
 - [ ] `CVView.vue` — abstract CV on page, download button, no personal info
 - [ ] `ContactView.vue` — form with categories: Getting in touch, Requesting personal info, Requesting services, Feedback / critique, Report an issue
-- [ ] `NowView.vue` — what I am focused on right now, updated periodically
+
 
 ### Frontend — navigation
 - [ ] Wire time capsule to BTTF transition animation (Phase A: time circuit + sci-fi notification, Phase B: full 3D car sequence — saved for later)
