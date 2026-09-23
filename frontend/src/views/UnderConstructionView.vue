@@ -66,9 +66,9 @@ const checklist = [
   { label: 'Projects section',             done: true },
   { label: 'Companies section',            done: true },
   { label: 'About page',                   done: true },
-  { label: 'Career page',                  done: false },
-  { label: 'Blog',                         done: false },
-  { label: 'CV page',                      done: false },
+  { label: 'Career page',                  done: true },
+  { label: 'Background animations',        done: false },
+  { label: 'Projects full page + individual project pages',                      done: false },
   { label: 'Contact form',                 done: false },
   { label: 'Self-hosted server & CI/CD',   done: false },
 ]
