@@ -1,7 +1,7 @@
 export const currently = [
   {
     label: 'Role',
-    value: 'MedTech student · HiWi @ Institut für Digitale Medizin, UKA',
+    value: 'Medical Engineering student · Student Assistant @ Radiology Department, UKA',
     color: 'green',
   },
   {
