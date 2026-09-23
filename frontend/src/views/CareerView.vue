@@ -231,8 +231,8 @@ onUnmounted(() => {
   align-items: start;
 }
 
-.tl-left { padding-right: var(--space-6); display: flex; justify-content: flex-end; }
-.tl-right { padding-left: var(--space-6); display: flex; flex-direction: column; }
+.tl-left { padding-right: var(--space-8); display: flex; justify-content: flex-end; }
+.tl-right { padding-left: var(--space-8); display: flex; flex-direction: column; }
 
 .tl-dot-wrap {
   display: flex;
@@ -261,7 +261,7 @@ onUnmounted(() => {
   border: 1px solid var(--border-subtle);
   background: var(--bg-secondary);
   transition: border-color var(--transition-fast), background var(--transition-fast);
-  max-width: 280px;
+  max-width: 420px;
 }
 .tl-card:hover { border-color: var(--accent-primary); background: var(--bg-surface); }
 
