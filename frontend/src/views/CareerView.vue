@@ -267,10 +267,10 @@ onUnmounted(() => {
 }
 .tl-card:hover { border-color: var(--accent-primary); background: var(--bg-surface); }
 
-.card-year { font-size: var(--text-xs); color: var(--text-muted); font-family: var(--font-mono); margin-bottom: var(--space-1); }
-.card-title { font-size: var(--text-sm); font-weight: 500; color: var(--text-primary); margin-bottom: 2px; }
-.card-sub { font-size: var(--text-xs); color: var(--text-secondary); line-height: 1.5; margin-bottom: var(--space-2); }
-.card-tag { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: var(--radius-sm); font-family: var(--font-mono); }
+.card-year { font-size: var(--text-sm); color: var(--text-muted); font-family: var(--font-mono); margin-bottom: var(--space-1); }
+.card-title { font-size: var(--text-base); font-weight: 500; color: var(--text-primary); margin-bottom: 2px; }
+.card-sub { font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-3); }
+.card-tag { display: inline-block; font-size: 10px; padding: 3px 9px; border-radius: var(--radius-sm); font-family: var(--font-mono); }
 .card-tag.edu { background: rgba(74,158,106,0.1); color: var(--accent-primary); }
 .card-tag.work { background: rgba(200,169,110,0.1); color: var(--accent-warm); }
 
