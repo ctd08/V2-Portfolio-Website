@@ -57,7 +57,7 @@
         <RouterLink to="/career" @click="closeSidebar">Career</RouterLink>
         <RouterLink to="/projects" @click="closeSidebar">Projects</RouterLink>
         <RouterLink to="/blog" @click="closeSidebar">Blog</RouterLink>
-        <RouterLink to="/cv" @click="closeSidebar">CV</RouterLink>
+        
       </nav>
 
       <div class="sidebar-footer">
