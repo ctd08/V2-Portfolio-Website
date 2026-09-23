@@ -45,6 +45,9 @@ export const skills = [
       { name: 'Scribe',      /*slug: null,          color: null*/ },
       { name: 'Snagit',      /*slug: null,          color: null*/ },
       { name: 'MS Office',   /*slug: 'microsoftoffice', color: '#D83B01'*/ },
+      { name: 'Taiga',       /*slug: null,          color: null*/ },
+      { name: 'Slack',       /*slug: 'slack',       color: '#4A154B'*/ },
+      { name: 'Nextcloud',    /*slug: 'nextcloud',   color: '#0082C9'*/ },
     ],
   },
 ]
