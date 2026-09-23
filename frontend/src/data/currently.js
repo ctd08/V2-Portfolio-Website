@@ -1,7 +1,7 @@
 export const currently = [
   {
     label: 'Role',
-    value: 'Medical Engineering student · Student Assistant @ Radiology Department, UKA',
+    value: 'MedEng student @ THA · Student Assistant @ Radiology Department, UKA',
     color: 'green',
   },
   {
@@ -11,7 +11,7 @@ export const currently = [
   },
   {
     label: 'Learning',
-    value: 'Linux · Docker · CI/CD',
+    value: 'Linux · Embedded Systems · Digital Health ',
     color: 'green',
   },
 ]
