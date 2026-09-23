@@ -189,16 +189,18 @@ onUnmounted(() => {
 .cover-wrap {
   position: relative;
   width: 100%;
-  height: 70vh;
-  min-height: 480px;
-  max-height: 700px;
+  /*height: 70vh;*/
+  /*min-height: 480px;
+  max-height: 700px;*/
   overflow: hidden;
+  aspect-ratio: 16 / 10;
 }
 .cover-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: center center;
+  background: var(--bg-primary);
 }
 .cover-overlay {
   position: absolute;
@@ -209,7 +211,8 @@ onUnmounted(() => {
 /* ── Content ── */
 .career-content {
   padding: 0 var(--space-6);
-  max-width: 780px;
+  /*max-width: 780px;*/
+  max-width: var(--max-width);
   margin: 0 auto;
 }
 
