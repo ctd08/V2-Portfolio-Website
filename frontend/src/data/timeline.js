@@ -26,7 +26,7 @@ export const timeline = [
     {
         id: 'uka-mediha',
         year: 'June 2026 - September 2026',
-        title: 'Study Assistant · Institute for Digital Medicine',
+        title: 'Student Assistant · Institute for Digital Medicine',
         sub: 'Uniklinikum Augsburg · MeDIHA',
         description: 'Researched digital medicine innovation hubs, technology transfer models, and potential collaboration opportunities between healthcare, research, and industry.',
         type : 'work',
