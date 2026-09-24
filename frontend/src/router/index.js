@@ -3,6 +3,7 @@ import HomeView from '@/views/HomeView.vue'
 import UnderConstructionView from '@/views/UnderConstructionView.vue'
 import AboutView from '@/views/AboutView.vue'
 import CareerView from '@/views/CareerView.vue'
+import ContactView from '@/views/ContactView.vue'
 
 const routes = [
   { path: '/',         component: HomeView },
@@ -19,7 +20,7 @@ const routes = [
   { path: '/projects/:id', component: UnderConstructionView },
   { path: '/blog',     component: UnderConstructionView },
   { path: '/cv',       component: UnderConstructionView },
-  { path: '/contact',  component: UnderConstructionView },
+  { path: '/contact',  component: ContactView },
   
 ]
 
