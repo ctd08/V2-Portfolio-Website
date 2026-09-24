@@ -200,7 +200,7 @@ async function submitForm() {
 .cover-wrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 7;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
 }
 .cover-img {
