@@ -6,7 +6,7 @@ export const currently = [
   },
   {
     label: 'Building',
-    value: 'A portfolio worth keeping',
+    value: 'A portfolio worth keeping · Digital Stethoscope @ THA',
     color: 'amber',
   },
   {
