@@ -897,6 +897,65 @@ HTML does not allow `<a>` elements nested inside other `<a>` elements. Browser b
 - `fix: education tag CSS class mismatch`
 - `docs: update journey log with phase 16`
 
+## Phase 17 — Contact form and backend
+
+### Files created / modified
+- `frontend/src/views/ContactView.vue` — contact page with cover image, validated form, success and error messages
+- `frontend/src/router/index.js` — /contact points to ContactView
+- `frontend/src/views/UnderConstructionView.vue` — checklist reprioritised (CV and Blog removed for now)
+- `backend/main.py` — FastAPI endpoint `POST /api/contact` that sends email through Resend
+- `backend/requirements.txt` — fastapi, uvicorn, resend, python-dotenv, email-validator
+- `backend/.env` — local secrets (git-ignored)
+
+### What was built
+
+**ContactView**
+Cover image, then a form with name, email, subject (dropdown), and message. All fields are mandatory and validated client-side. Subjects: Getting in touch, Requesting personal info, Requesting services, Feedback / critique, Report an issue. Shows a success or error message after submitting.
+
+**Backend**
+FastAPI endpoint that validates the data, escapes the user's input with `html.escape`, and sends an email to my inbox through Resend. Uses `reply_to`, so replying to the email goes straight to the visitor.
+
+**Pipeline**
+Form → POST to backend → Resend → my inbox.
+
+### Decisions made
+
+- Resend with its shared test sender (`onboarding@resend.dev`). No domain needed yet, and it only delivers to the email the Resend account was created with.
+- Backend deployed as its own Vercel project (root directory `backend`) alongside the frontend project. Temporary until the Hetzner VPS is ready, then only `VITE_API_URL` changes.
+- `VITE_API_URL` is a config variable on the frontend, not a secret. The URL is public anyway.
+- `RESEND_API_KEY` is a secret on the backend only, never with a `VITE_` prefix.
+- UnderConstructionView checklist order: contact form, background animations, projects, about, now page, server, CI/CD, analytics dashboard.
+
+### Problems encountered and fixed
+
+- **uvicorn "Could not import module main"**: started from the project root instead of `backend/`.
+- **SyntaxError on line 31 of main.py**: `params =` had lost its dictionary. Replaced the whole file.
+- **`EmailStr` needs `email-validator`**: added to requirements.
+- **CORS**: added `127.0.0.1:5173` next to `localhost:5173`.
+- **Live site called `localhost:8000`**: the URL was hardcoded. Now `VITE_API_URL` with a localhost fallback.
+- **Double slash in the request URL**: a trailing slash in `VITE_API_URL` caused a redirect, which browsers refuse during a CORS preflight. Fixed by removing the slash and stripping it in code.
+- **Vercel's `VITE_` warning**: safe for a non-secret URL, so I set it as config.
+
+### Still broken
+
+The live form returns 500 with:
+`Invalid 'to' field. The email address needs to follow the email@example.com format.`
+
+The request reaches the backend and Resend responds, so the problem is the `to` address. The backend is receiving an empty or malformed `YOUR_EMAIL`.
+
+### Concepts learned
+
+- **Environment variables**: secrets live in the host's settings, never in code or git.
+- **Build-time vs runtime variables**: Vite bakes `VITE_` values in at build time, so the frontend needs a redeploy. The backend reads variables at runtime, but Vercel only applies new ones to new deployments.
+- **CORS preflight**: the browser sends an OPTIONS request first, and redirects on it are not allowed.
+- **Config vs secret on Vercel**: a secret's value can't be read back after saving, which makes typos hard to find.
+
+### Commits
+- `feat: add ContactView and FastAPI email backend`
+- `fix: use configurable API URL in contact form`
+- `fix: strip trailing slash from API URL`
+- `docs: update journey log with phase 17`
+
 ## Next steps
 
 ### Frontend — home view
