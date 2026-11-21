@@ -122,7 +122,7 @@ const errors = reactive({
 const loading = ref(false)
 const success = ref(false)
 const serverError = ref(false)
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/$/, '')
 
 function validate() {
   let valid = true
