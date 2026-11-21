@@ -2,3 +2,4 @@ fastapi
 uvicorn
 resend
 python-dotenv
+email-validator
