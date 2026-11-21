@@ -122,6 +122,7 @@ const errors = reactive({
 const loading = ref(false)
 const success = ref(false)
 const serverError = ref(false)
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 function validate() {
   let valid = true
@@ -167,7 +168,7 @@ async function submitForm() {
   success.value = false
 
   try {
-    const res = await fetch('http://localhost:8000/api/contact', {
+    const res = await fetch(`${API_URL}/api/contact`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form),
