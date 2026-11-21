@@ -956,6 +956,15 @@ The request reaches the backend and Resend responds, so the problem is the `to` 
 - `fix: strip trailing slash from API URL`
 - `docs: update journey log with phase 17`
 
+### Final fix
+
+The live form returned 500 with "Invalid `to` field". The cause was a naming mismatch: the variable on Vercel was called `MY_EMAIL`, but the code reads `YOUR_EMAIL`. A missing variable comes back as `None`, so Resend got an invalid address. Renaming it to `YOUR_EMAIL` and redeploying fixed it.
+
+### Lessons learned
+
+- **Environment variable names must match the code exactly.** A wrong name fails silently, and the error shows up somewhere else, here as a Resend validation error.
+- **Temporarily returning the real error in the response** was the fastest way to debug a server I couldn't see into. I removed it afterwards so visitors don't see internals.
+
 ## Next steps
 
 ### Frontend — home view
