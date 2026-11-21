@@ -59,6 +59,6 @@ def contact(form: ContactForm):
         resend.Emails.send(params)
     except Exception as e:
         print("Resend error:", e)
-        raise HTTPException(status_code=500, detail="Email could not be sent")
+        raise HTTPException(status_code=500, detail=f"Email could not be sent: {e}")
 
     return {"status": "sent"}
