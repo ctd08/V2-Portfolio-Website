@@ -6,9 +6,9 @@ import CareerView from '@/views/CareerView.vue'
 import ContactView from '@/views/ContactView.vue'
 
 const routes = [
-  { path: '/',         component: HomeView },
-  { path: '/about',    component: AboutView },
-  { path: '/career',   component: CareerView },
+  { path: '/',         component: HomeView, meta: { ambient: 'both' }},
+  { path: '/about',    component: AboutView, meta: { ambient: 'stars' } },
+  { path: '/career',   component: CareerView, meta: { ambient: 'circuit' } },
   { path: '/career/tha-ti', component: UnderConstructionView },
   { path: '/career/tha-mt', component: UnderConstructionView },
   { path: '/career/fos', component: UnderConstructionView },
