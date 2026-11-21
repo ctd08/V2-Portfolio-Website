@@ -41,7 +41,7 @@ def contact(form: ContactForm):
 
     params = {
         "from": "Portfolio Contact <onboarding@resend.dev>",
-        "to": [YOUR_EMAIL],
+        "to": [CRISTINA.TUTUNARIU@YAHOO.COM],
         "reply_to": form.email,
         "subject": f"[{form.subject}] from {form.name}",
         "html": f"""
