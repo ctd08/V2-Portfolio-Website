@@ -10,7 +10,7 @@ from pydantic import BaseModel, EmailStr
 load_dotenv()
 
 resend.api_key = os.getenv("RESEND_API_KEY")
-YOUR_EMAIL = os.getenv("YOUR_EMAIL")
+YOUR_EMAIL = (os.getenv("YOUR_EMAIL") or "").strip().strip('"').strip("'")
 
 app = FastAPI()
 
@@ -41,7 +41,7 @@ def contact(form: ContactForm):
 
     params = {
         "from": "Portfolio Contact <onboarding@resend.dev>",
-        "to": [CRISTINA.TUTUNARIU@YAHOO.COM],
+        "to": [YOUR_EMAIL],
         "reply_to": form.email,
         "subject": f"[{form.subject}] from {form.name}",
         "html": f"""
